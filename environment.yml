@@ -1,0 +1,14 @@
+name: sphinx
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - sphinx
+  - sphinx-book-theme >=0.2
+  - sphinx-comments
+  - sphinx-copybutton
+  - sphinx-design
+  - sphinx-intl
+  - sphinxcontrib-bibtex
+  - ablog
+  - myst-parser
