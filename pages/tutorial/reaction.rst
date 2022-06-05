@@ -3,7 +3,7 @@ Reaction path search
 
 For many computational studies the kinetics of a reaction are important to provide insights into the feasibility of reactions.
 Knowledge about the stationary points on the potential energy surface, like the minima and first order saddle points, provides the possibility to compute reaction energies as well as barrier heights.
-To obtain a path from the reactants to the products on the potential energy surface, different techiques have been proposed, here we will be focusing on the growing string method (GSM) to generate reaction paths.
+To obtain a path from the reactants to the products on the potential energy surface, different techiques have been proposed, here we will be focusing on the growing string method (GSM) to generate reaction paths.\ :footcite:`zimmerman2013`
 
 
 Setting up GSM
@@ -379,3 +379,128 @@ As starting structure we use allyl vinyl ether and the corresponding pentenale.
 .. tip::
 
    The provided input structure might not be optimal, try to prepare the structures to find the optimal reaction path.
+
+
+Transition metal reactions
+--------------------------
+
+Another interesting application of the GSM path finder together with tight binding methods is the investigation of transition metal complexes.\ :footcite:`dohm2020`
+For this exercises we will investigate several different reactions using the xTB Hamiltonian.
+
+.. dropdown:: Metallabenzene vs. Rhodium Cp complex
+
+   .. tab-set::
+
+      .. tab-item:: coordinates
+         :sync: xyz-3
+
+         .. literalinclude:: reaction/mobh-15/reactant.xyz
+            :caption: reactant.xyz
+            :language: none
+
+      .. tab-item:: image
+         :sync: png-3
+
+         .. image:: reaction/mobh-15/reactant.png
+            :scale: 50%
+
+   .. tab-set::
+
+      .. tab-item:: coordinates
+         :sync: xyz-3
+
+         .. literalinclude:: reaction/mobh-15/product.xyz
+            :caption: product.xyz
+            :language: none
+
+      .. tab-item:: image
+         :sync: png-3
+
+         .. image:: reaction/mobh-15/product.png
+            :scale: 50%
+
+.. dropdown:: Rhenium PNP pincer complex
+
+   .. tab-set::
+
+      .. tab-item:: coordinates
+         :sync: xyz-4
+
+         .. literalinclude:: reaction/mobh-25/reactant.xyz
+            :caption: reactant.xyz
+            :language: none
+
+      .. tab-item:: image
+         :sync: png-4
+
+         .. image:: reaction/mobh-25/reactant.png
+            :scale: 50%
+
+   .. tab-set::
+
+      .. tab-item:: coordinates
+         :sync: xyz-4
+
+         .. literalinclude:: reaction/mobh-25/product.xyz
+            :caption: product.xyz
+            :language: none
+
+      .. tab-item:: image
+         :sync: png-4
+
+         .. image:: reaction/mobh-25/product.png
+            :scale: 50%
+
+.. dropdown:: Ruthenium pincer complex
+
+   .. tab-set::
+
+      .. tab-item:: coordinates
+         :sync: xyz-5
+
+         .. literalinclude:: reaction/mobh-14/reactant.xyz
+            :caption: reactant.xyz
+            :language: none
+
+      .. tab-item:: image
+         :sync: png-5
+
+         .. image:: reaction/mobh-14/reactant.png
+            :scale: 50%
+
+   .. tab-set::
+
+      .. tab-item:: coordinates
+         :sync: xyz-5
+
+         .. literalinclude:: reaction/mobh-14/product.xyz
+            :caption: product.xyz
+            :language: none
+
+      .. tab-item:: image
+         :sync: png-5
+
+         .. image:: reaction/mobh-14/product.png
+            :scale: 50%
+
+.. admonition:: Exercise
+   :class: info
+
+   Find the reaction paths for the three transition metal reactions with GFN2-xTB.
+   Compare the computed barrier heights and reaction energies with the reference values
+   computed by localized coupled cluster or double hybrid density functionals given below
+   (in kcal/mol).
+
+   ======= ========= ==========
+    Metal   Barrier   Reaction
+   ======= ========= ==========
+    Ru        20.27    –56.96
+    Re         2.66     –9.35
+    Rh        10.35     –3.32
+   ======= ========= ==========
+
+
+Literature
+----------
+
+.. footbibliography::
