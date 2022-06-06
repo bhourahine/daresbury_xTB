@@ -500,6 +500,17 @@ For this exercises we will investigate several different reactions using the xTB
    ======= ========= ==========
 
 
+Summary
+-------
+
+.. admonition:: You learned...
+   :class: important
+
+   - to prepare starting structures for a reaction path search
+   - perform a reaction path search with the growing string methods
+   - compare reaction paths from different semiemprical methods
+
+
 Literature
 ----------
 
