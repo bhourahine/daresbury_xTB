@@ -23,7 +23,7 @@ For optimal performance pin the BLAS library to the Intel MKL if available on yo
 Environment effects on side-chains
 ----------------------------------
 
-For the compound 31357 we download the structure from the PubChem database.
+For the compound `tributyl phosphate <https://pubchem.ncbi.nlm.nih.gov/compound/31357>`__ we download the structure from the PubChem database.
 The three butyl chains provide conformational flexibility and the just retrieved structure might not describe the energetically most favorable conformation.
 
 .. tab-set::
@@ -53,25 +53,40 @@ For the conformer search itself we will use the program defaults which will use 
 
 .. code-block:: text
 
-   ❯ crest pubchem.xyz -T $(nproc) | tee crest.out
+   ❯ crest pubchem.xyz -T $(nproc) -mquick | tee crest.out
 
 .. note::
 
    The runtime for sampling the conformer ensemble depends mainly on the flexibility of the system.
    The conformer search can be parallelized on a shared memory system using the ``-T`` option to speed-up the calculation.
 
+   Additionally, the sampling quality can be changed by using the ``-quick``, ``-squick``, or ``-mquick``.
+   We will use ``-squick`` option here which is the faster than a full search, but might also result in potentially incomplete ensemble.
+   For production runs try to avoid reducing the sampling quality.
+
 After the calculation has finished we check the files produced by CREST
 
 .. code-block:: text
+   :emphasize-lines: 6-8
 
    ❯ tree .
    .
-   ├── ...
-   ├── crest.out
+   ├── coord
+   ├── coord.original
+   ├── cre_members
    ├── crest_best.xyz
    ├── crest_conformers.xyz
-   ├── ...
-   └── pubchem.xyz
+   ├── crest.energies
+   ├── crest.out
+   ├── crest_rotamers.xyz
+   ├── gfnff_adjacency
+   ├── gfnff_charges
+   ├── gfnff_topo
+   ├── hosts_file
+   ├── job
+   ├── pubchem.xyz
+   ├── struc.xyz
+   └── wbo
 
 ``crest_best.xyz``:
    Contains the lowest conformer of the ensemble
@@ -79,6 +94,9 @@ After the calculation has finished we check the files produced by CREST
 ``crest_conformers.xyz``:
    Contains the whole conformer ensemble ordered energetically.
    A viewer, like `molden <https://www.theochem.ru.nl/molden/>`__, can be used to inspect the ensemble and the relative conformational energies (in kcal/mol).
+
+``crest.energies``:
+   Contains the relative conformer energies in kcal/mol for plotting.
 
 .. admonition:: Exercise
    :class: info
