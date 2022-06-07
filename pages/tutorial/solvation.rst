@@ -8,7 +8,7 @@ To model this environment effect we can employ an implicit solvation model.
 Partition coefficients
 ----------------------
 
-We will again use the `tributyl phosphate <https://pubchem.ncbi.nlm.nih.gov/compound/31357>`__ system for this chapter starting from the lowest conformer computed at DFT level of theory.
+We will again use the `tributyl phosphate <https://pubchem.ncbi.nlm.nih.gov/compound/31357>`__ system for this chapter starting from the lowest conformer computed at DFT level of theory.\ :footcite:`salthammer2022`
 
 .. tab-set::
 
