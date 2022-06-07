@@ -33,7 +33,6 @@ The three butyl chains provide conformational flexibility and the just retrieved
 
       .. literalinclude:: conformers/tbnp/pubchem.xyz
          :caption: pubchem.xyz
-         :language: none
 
    .. tab-item:: image
       :sync: png
@@ -110,7 +109,6 @@ After the calculation has finished we check the files produced by CREST
 
          .. literalinclude:: conformers/tbnp/crenso-woctanol.xyz
             :caption: dft-lowest.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png

@@ -63,7 +63,6 @@ For this purpose we use preoptimized structure of cyclohexane rotamers.
 
       .. literalinclude:: reaction/inversion/reactant.xyz
          :caption: reactant.xyz
-         :language: none
 
    .. tab-item:: image
       :sync: png
@@ -78,7 +77,6 @@ For this purpose we use preoptimized structure of cyclohexane rotamers.
 
       .. literalinclude:: reaction/inversion/product.xyz
          :caption: product.xyz
-         :language: none
 
    .. tab-item:: image
       :sync: png
@@ -229,7 +227,6 @@ For the cycloaddition we use a furan and ethene molecule
 
       .. literalinclude:: reaction/diels-alder/reactant.xyz
          :caption: reactant.xyz
-         :language: none
 
    .. tab-item:: image
       :sync: png-1
@@ -244,7 +241,6 @@ For the cycloaddition we use a furan and ethene molecule
 
       .. literalinclude:: reaction/diels-alder/product.xyz
          :caption: product.xyz
-         :language: none
 
    .. tab-item:: image
       :sync: png-1
@@ -396,7 +392,6 @@ For this exercises we will investigate several different reactions using the xTB
 
          .. literalinclude:: reaction/mobh-15/reactant.xyz
             :caption: reactant.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png-3
@@ -411,7 +406,6 @@ For this exercises we will investigate several different reactions using the xTB
 
          .. literalinclude:: reaction/mobh-15/product.xyz
             :caption: product.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png-3
@@ -428,7 +422,6 @@ For this exercises we will investigate several different reactions using the xTB
 
          .. literalinclude:: reaction/mobh-25/reactant.xyz
             :caption: reactant.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png-4
@@ -443,7 +436,6 @@ For this exercises we will investigate several different reactions using the xTB
 
          .. literalinclude:: reaction/mobh-25/product.xyz
             :caption: product.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png-4
@@ -460,7 +452,6 @@ For this exercises we will investigate several different reactions using the xTB
 
          .. literalinclude:: reaction/mobh-14/reactant.xyz
             :caption: reactant.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png-5
@@ -475,7 +466,6 @@ For this exercises we will investigate several different reactions using the xTB
 
          .. literalinclude:: reaction/mobh-14/product.xyz
             :caption: product.xyz
-            :language: none
 
       .. tab-item:: image
          :sync: png-5

@@ -5,6 +5,7 @@ This section contains the tutorials for the extended tight binding and solvation
 
 .. toctree::
 
+   xtb
    conformers
    solvation
    reaction
