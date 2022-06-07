@@ -92,7 +92,7 @@ For GFN2-xTB we will find the following printout for the initialization.
 
 Three notable points can be found in the output:
 
-1. the version of the library used for evaluating xTB, as well as details on the parametrization of the xTB Hamiltonian and the included iteractions
+1. the version of the library used for evaluating xTB, as well as details on the parametrization of the xTB Hamiltonian and the included interactions
 
 2. the electronic temperature defaulting to 300K with the xTB Hamiltonian
 

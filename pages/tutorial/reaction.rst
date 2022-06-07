@@ -3,7 +3,7 @@ Reaction path search
 
 For many computational studies the kinetics of a reaction are important to provide insights into the feasibility of reactions.
 Knowledge about the stationary points on the potential energy surface, like the minima and first order saddle points, provides the possibility to compute reaction energies as well as barrier heights.
-To obtain a path from the reactants to the products on the potential energy surface, different techiques have been proposed, here we will be focusing on the growing string method (GSM) to generate reaction paths.\ :footcite:`zimmerman2013`
+To obtain a path from the reactants to the products on the potential energy surface, different techniques have been proposed, here we will be focusing on the growing string method (GSM) to generate reaction paths.\ :footcite:`zimmerman2013`
 
 
 Setting up GSM
@@ -283,7 +283,7 @@ To ease the reaction path search the reactants should be optimized before runnin
          :caption: dftb_in.hsd
          :language: sh
 
-For each of the five models we create a separate calculation directory and add the required ``dftb_in.hsd`` as well as the reactant and propduct input structure.
+For each of the five models we create a separate calculation directory and add the required ``dftb_in.hsd`` as well as the reactant and product input structure.
 To optimize both structures we perform a short optimization with the reactant and product.
 An example for running the optimization is given below
 
@@ -334,7 +334,7 @@ Claisen rearrangement reaction
 ------------------------------
 
 Another example is the Claisen rearrangement.
-As starting structure we use allyl vinyl ether and the corresponding pentenale.
+As starting structure we use `allyl vinyl ether <https://pubchem.ncbi.nlm.nih.gov/compound/221523>`_ and the corresponding `pentenale <https://pubchem.ncbi.nlm.nih.gov/compound/16418>`__.
 
 .. tab-set::
 
@@ -498,7 +498,7 @@ Summary
 
    - to prepare starting structures for a reaction path search
    - perform a reaction path search with the growing string methods
-   - compare reaction paths from different semiemprical methods
+   - compare reaction paths from different semiempirical methods
 
 
 Literature
