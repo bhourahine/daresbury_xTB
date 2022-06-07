@@ -17,7 +17,7 @@ myst_enable_extensions = [
 ]
 
 html_theme = "sphinx_book_theme"
-html_title = "Fortran OOP Seminar Series"
+html_title = project
 html_logo = "_static/dftbschool-logo.svg"
 html_favicon = "_static/dftbschool-logo.svg"
 

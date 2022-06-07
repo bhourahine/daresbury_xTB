@@ -33,10 +33,7 @@ Hamiltonian = DFTB {
   Solvation = GeneralizedBorn { ParamFile = solvation/3ob-1-0/param_alpb_h2o.txt }
 }
 
-Options = {
-  WriteResultsTag = Yes
-  WriteDetailedOut = No
-}
+Options = { WriteDetailedOut = No }
 Analysis { CalculateForces = Yes }
 ParserOptions = { ParserVersion = 10 }
 Parallel = { UseOmpThreads = Yes }

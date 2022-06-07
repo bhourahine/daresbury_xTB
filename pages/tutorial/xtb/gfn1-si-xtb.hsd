@@ -6,10 +6,7 @@ Hamiltonian = xTB {
   ParameterFile = "gfn1-si-xtb.toml"
 }
 
-Options = {
-  WriteResultsTag = Yes
-  WriteDetailedOut = No
-}
+Options = { WriteDetailedOut = No }
 Analysis { CalculateForces = Yes }
 ParserOptions = { ParserVersion = 10 }
 Parallel = { UseOmpThreads = Yes }
