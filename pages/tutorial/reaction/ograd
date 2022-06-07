@@ -28,6 +28,11 @@ cat "$geom_file" >> struc.xyz
 "$dftbplus" > dftb.out
 
 # Post-processing, convert to Orca standard output
-"$dp2orca" results.tag > "$output_file"
+if [ -f results.tag ]; then
+  "$dp2orca" results.tag > "$output_file"
+fi
+if [ -f autotest.tag ]; then
+  "$dp2orca" autotest.tag > "$output_file"
+fi
 
 popd 2>&1 > /dev/null

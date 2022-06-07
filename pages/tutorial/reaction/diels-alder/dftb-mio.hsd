@@ -24,7 +24,7 @@ Hamiltonian = DFTB {
 }
 
 Options = {
-  WriteResultsTag = Yes
+  WriteAutotestTag = Yes
   WriteDetailedOut = No
 }
 Analysis { CalculateForces = Yes }
