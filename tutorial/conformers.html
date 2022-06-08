@@ -1,0 +1,635 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Conformational ensembles &#8212; Daresbury DFTB+ School</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <link rel="shortcut icon" href="../_static/dftbschool-logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Solvation effects" href="solvation.html" />
+    <link rel="prev" title="Extended tight binding" href="xtb.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dftbschool-logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Tutorial
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="xtb.html">
+     Extended tight binding
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Conformational ensembles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="solvation.html">
+     Solvation effects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reaction.html">
+     Reaction path search
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   External references
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tblite.readthedocs.io/en/latest/spec/index.html">
+     xTB Hamiltonian
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://xtb-docs.readthedocs.io/en/latest/crest.html">
+     CREST documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            
+<div class="sd-fs-4">
+<!--
+<a href="https://fortran-lang.discourse.group/" target="_blank">
+    <i class="fab fa-discourse"></i>
+</a>
+<a href="https://twitter.com/fortranlang" target="_blank">
+    <i class="fab fa-twitter"></i>
+</a>
+<a href="https://github.com/fortran-lang" target="_blank">
+    <i class="fab fa-github"></i>
+</a>
+-->
+</div>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/awvwgk/daresbury"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/awvwgk/daresbury/edit/main/pages/tutorial/conformers.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-crest">
+   Setting up CREST
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-effects-on-side-chains">
+   Environment effects on side-chains
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Conformational ensembles</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-crest">
+   Setting up CREST
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#environment-effects-on-side-chains">
+   Environment effects on side-chains
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="conformational-ensembles">
+<h1>Conformational ensembles<a class="headerlink" href="#conformational-ensembles" title="Permalink to this headline">#</a></h1>
+<p>For many larger molecules a single structure approach for computing properties is insufficient since several relevant structures are populated at room temperature.
+In this tutorial we will use the conformer–rotamer ensemble search tool (CREST) for generating a conformational ensemble.<a class="footnote-reference brackets" href="#footcite-pracht2020" id="id1">1</a>
+An interface from CREST to DFTB+ is currently under development, therefore we will use the <code class="docutils literal notranslate"><span class="pre">xtb</span></code> program package<a class="footnote-reference brackets" href="#footcite-bannwarth2020" id="id2">2</a> to provide access to the extended tight binding (xTB) Hamiltonian.</p>
+<section id="setting-up-crest">
+<h2>Setting up CREST<a class="headerlink" href="#setting-up-crest" title="Permalink to this headline">#</a></h2>
+<p>First, ensure that the <code class="docutils literal notranslate"><span class="pre">crest</span></code> and the <code class="docutils literal notranslate"><span class="pre">xtb</span></code> binary are found in your <code class="docutils literal notranslate"><span class="pre">PATH</span></code>.
+You can install the programs with the <em>mamba</em> package manager using</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>mamba create -n conf crest xtb &#39;libblas=*=*mkl*&#39;
+mamba activate conf
+</pre></div>
+</div>
+<p>For optimal performance pin the BLAS library to the Intel MKL if available on your platform.</p>
+</section>
+<section id="environment-effects-on-side-chains">
+<h2>Environment effects on side-chains<a class="headerlink" href="#environment-effects-on-side-chains" title="Permalink to this headline">#</a></h2>
+<p>For the compound <a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/compound/31357">tributyl phosphate</a> we download the structure from the PubChem database.
+The three butyl chains provide conformational flexibility and the just retrieved structure might not describe the energetically most favorable conformation.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c22f1d62-a44c-4f19-8541-039961424f2b" name="88a69621-f8b6-4f43-bccc-4dbeec41c928" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz" for="c22f1d62-a44c-4f19-8541-039961424f2b">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">pubchem.xyz</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">44</span>
+<span class="mi">31357</span>
+<span class="n">P</span>           <span class="o">-</span><span class="mf">0.01860000000000</span>        <span class="mf">0.96240000000000</span>        <span class="mf">0.86270000000000</span>
+<span class="n">O</span>            <span class="mf">1.24730000000000</span>        <span class="mf">1.23990000000000</span>       <span class="o">-</span><span class="mf">0.10990000000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">1.28770000000000</span>        <span class="mf">1.20560000000000</span>       <span class="o">-</span><span class="mf">0.11480000000000</span>
+<span class="n">O</span>            <span class="mf">0.00250000000000</span>       <span class="o">-</span><span class="mf">0.63950000000000</span>        <span class="mf">1.10700000000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.03210000000000</span>        <span class="mf">1.78240000000000</span>        <span class="mf">2.12160000000000</span>
+<span class="n">C</span>            <span class="mf">3.56530000000000</span>        <span class="mf">1.33540000000000</span>       <span class="o">-</span><span class="mf">0.69040000000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.60530000000000</span>        <span class="mf">1.23840000000000</span>       <span class="o">-</span><span class="mf">0.70410000000000</span>
+<span class="n">C</span>            <span class="mf">0.03500000000000</span>       <span class="o">-</span><span class="mf">2.95840000000000</span>        <span class="mf">0.52240000000000</span>
+<span class="n">C</span>            <span class="mf">2.55080000000000</span>        <span class="mf">1.00760000000000</span>        <span class="mf">0.39580000000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.58640000000000</span>        <span class="mf">0.93820000000000</span>        <span class="mf">0.38600000000000</span>
+<span class="n">C</span>            <span class="mf">0.01670000000000</span>       <span class="o">-</span><span class="mf">1.52800000000000</span>        <span class="mf">0.00260000000000</span>
+<span class="n">C</span>            <span class="mf">4.99570000000000</span>        <span class="mf">1.09180000000000</span>       <span class="o">-</span><span class="mf">0.21750000000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">5.03260000000000</span>        <span class="mf">0.98640000000000</span>       <span class="o">-</span><span class="mf">0.22620000000000</span>
+<span class="n">C</span>            <span class="mf">0.06690000000000</span>       <span class="o">-</span><span class="mf">3.97200000000000</span>       <span class="o">-</span><span class="mf">0.61800000000000</span>
+<span class="n">C</span>            <span class="mf">6.00320000000000</span>        <span class="mf">1.37910000000000</span>       <span class="o">-</span><span class="mf">1.31920000000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">6.04940000000000</span>        <span class="mf">1.32860000000000</span>       <span class="o">-</span><span class="mf">1.30350000000000</span>
+<span class="n">C</span>            <span class="mf">0.12870000000000</span>       <span class="o">-</span><span class="mf">5.39790000000000</span>       <span class="o">-</span><span class="mf">0.09450000000000</span>
+<span class="n">H</span>            <span class="mf">3.35100000000000</span>        <span class="mf">0.72850000000000</span>       <span class="o">-</span><span class="mf">1.57910000000000</span>
+<span class="n">H</span>            <span class="mf">3.44050000000000</span>        <span class="mf">2.37950000000000</span>       <span class="o">-</span><span class="mf">1.00350000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.49160000000000</span>        <span class="mf">2.28050000000000</span>       <span class="o">-</span><span class="mf">1.02810000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.38590000000000</span>        <span class="mf">0.62470000000000</span>       <span class="o">-</span><span class="mf">1.58670000000000</span>
+<span class="n">H</span>            <span class="mf">0.90630000000000</span>       <span class="o">-</span><span class="mf">3.09410000000000</span>        <span class="mf">1.17540000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.84420000000000</span>       <span class="o">-</span><span class="mf">3.12700000000000</span>        <span class="mf">1.15680000000000</span>
+<span class="n">H</span>            <span class="mf">2.64090000000000</span>       <span class="o">-</span><span class="mf">0.03930000000000</span>        <span class="mf">0.70250000000000</span>
+<span class="n">H</span>            <span class="mf">2.71020000000000</span>        <span class="mf">1.64300000000000</span>        <span class="mf">1.27340000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.76500000000000</span>        <span class="mf">1.56970000000000</span>        <span class="mf">1.26270000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.65050000000000</span>       <span class="o">-</span><span class="mf">0.11060000000000</span>        <span class="mf">0.69310000000000</span>
+<span class="n">H</span>            <span class="mf">0.90370000000000</span>       <span class="o">-</span><span class="mf">1.33520000000000</span>       <span class="o">-</span><span class="mf">0.60870000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.87220000000000</span>       <span class="o">-</span><span class="mf">1.36000000000000</span>       <span class="o">-</span><span class="mf">0.61330000000000</span>
+<span class="n">H</span>            <span class="mf">5.10860000000000</span>        <span class="mf">0.05110000000000</span>        <span class="mf">0.10790000000000</span>
+<span class="n">H</span>            <span class="mf">5.21510000000000</span>        <span class="mf">1.72800000000000</span>        <span class="mf">0.64780000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.23930000000000</span>        <span class="mf">1.58980000000000</span>        <span class="mf">0.66540000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.14910000000000</span>       <span class="o">-</span><span class="mf">0.06540000000000</span>        <span class="mf">0.05960000000000</span>
+<span class="n">H</span>            <span class="mf">0.93850000000000</span>       <span class="o">-</span><span class="mf">3.78720000000000</span>       <span class="o">-</span><span class="mf">1.25660000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.82500000000000</span>       <span class="o">-</span><span class="mf">3.85540000000000</span>       <span class="o">-</span><span class="mf">1.24460000000000</span>
+<span class="n">H</span>            <span class="mf">5.83130000000000</span>        <span class="mf">0.73360000000000</span>       <span class="o">-</span><span class="mf">2.18640000000000</span>
+<span class="n">H</span>            <span class="mf">5.93810000000000</span>        <span class="mf">2.42120000000000</span>       <span class="o">-</span><span class="mf">1.64800000000000</span>
+<span class="n">H</span>            <span class="mf">7.02080000000000</span>        <span class="mf">1.19960000000000</span>       <span class="o">-</span><span class="mf">0.95850000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.98120000000000</span>        <span class="mf">2.38380000000000</span>       <span class="o">-</span><span class="mf">1.58660000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.89010000000000</span>        <span class="mf">0.72100000000000</span>       <span class="o">-</span><span class="mf">2.20000000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">7.06450000000000</span>        <span class="mf">1.13910000000000</span>       <span class="o">-</span><span class="mf">0.94050000000000</span>
+<span class="n">H</span>            <span class="mf">1.02870000000000</span>       <span class="o">-</span><span class="mf">5.55600000000000</span>        <span class="mf">0.50830000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.74450000000000</span>       <span class="o">-</span><span class="mf">5.62650000000000</span>        <span class="mf">0.52480000000000</span>
+<span class="n">H</span>            <span class="mf">0.14930000000000</span>       <span class="o">-</span><span class="mf">6.10710000000000</span>       <span class="o">-</span><span class="mf">0.92790000000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="f492c90a-b062-4928-8766-18f176876bb9" name="88a69621-f8b6-4f43-bccc-4dbeec41c928" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png" for="f492c90a-b062-4928-8766-18f176876bb9">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/pubchem.png"><img alt="../_images/pubchem.png" src="../_images/pubchem.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<p>To start a calculation with CREST we create a new directory and add the initial structure.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ tree .
+.
+└── pubchem.xyz
+</pre></div>
+</div>
+<p>For the conformer search itself we will use the program defaults which will use the GFN2-xTB method for the sampling</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ crest pubchem.xyz -T $(nproc) -mquick | tee crest.out
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The runtime for sampling the conformer ensemble depends mainly on the flexibility of the system.
+The conformer search can be parallelized on a shared memory system using the <code class="docutils literal notranslate"><span class="pre">-T</span></code> option to speed-up the calculation.</p>
+<p>Additionally, the sampling quality can be changed by using the <code class="docutils literal notranslate"><span class="pre">-quick</span></code>, <code class="docutils literal notranslate"><span class="pre">-squick</span></code>, or <code class="docutils literal notranslate"><span class="pre">-mquick</span></code>.
+We will use <code class="docutils literal notranslate"><span class="pre">-squick</span></code> option here which is the faster than a full search, but might also result in potentially incomplete ensemble.
+For production runs try to avoid reducing the sampling quality.</p>
+</div>
+<p>After the calculation has finished we check the files produced by CREST</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ tree .
+.
+├── coord
+├── coord.original
+├── cre_members
+<span class="hll">├── crest_best.xyz
+</span><span class="hll">├── crest_conformers.xyz
+</span><span class="hll">├── crest.energies
+</span>├── crest.out
+├── crest_rotamers.xyz
+├── gfnff_adjacency
+├── gfnff_charges
+├── gfnff_topo
+├── hosts_file
+├── job
+├── pubchem.xyz
+├── struc.xyz
+└── wbo
+</pre></div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">crest_best.xyz</span></code>:</dt><dd><p>Contains the lowest conformer of the ensemble</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">crest_conformers.xyz</span></code>:</dt><dd><p>Contains the whole conformer ensemble ordered energetically.
+A viewer, like <a class="reference external" href="https://www.theochem.ru.nl/molden/">molden</a>, can be used to inspect the ensemble and the relative conformational energies (in kcal/mol).</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">crest.energies</span></code>:</dt><dd><p>Contains the relative conformer energies in kcal/mol for plotting.</p>
+</dd>
+</dl>
+<div class="info admonition">
+<p class="admonition-title">Exercise</p>
+<p>Compare the found ensemble with the energetically most favorable conformer found by DFT.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="41e1d639-469e-42a3-809c-759a872d7338" name="0e2c3dda-226f-4670-9c4b-fcbd5cb02ad6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz" for="41e1d639-469e-42a3-809c-759a872d7338">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">dft-lowest.xyz</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">44</span>
+
+<span class="n">P</span>            <span class="mf">0.04979860695690</span>        <span class="mf">0.44711451464043</span>       <span class="o">-</span><span class="mf">1.00582935088785</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">1.01828570201577</span>        <span class="mf">1.61992081924505</span>       <span class="o">-</span><span class="mf">1.08204989992478</span>
+<span class="n">O</span>            <span class="mf">1.44541819964837</span>        <span class="mf">1.20259350968357</span>       <span class="o">-</span><span class="mf">0.93004646393268</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.23116449461962</span>       <span class="o">-</span><span class="mf">0.19092086100911</span>        <span class="mf">0.43348057584036</span>
+<span class="n">O</span>            <span class="mf">0.04989811059549</span>       <span class="o">-</span><span class="mf">0.52939857862507</span>       <span class="o">-</span><span class="mf">2.13193727489898</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.22595849860852</span>        <span class="mf">0.57569749292020</span>       <span class="o">-</span><span class="mf">0.63048371070980</span>
+<span class="n">C</span>            <span class="mf">3.17125059294208</span>        <span class="mf">2.26919500606264</span>        <span class="mf">0.37793012664706</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.49671006005934</span>       <span class="o">-</span><span class="mf">2.62276723852782</span>        <span class="mf">0.51752296451488</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.37291235771157</span>        <span class="mf">1.37377084394425</span>       <span class="o">-</span><span class="mf">1.59520657808180</span>
+<span class="n">C</span>            <span class="mf">1.69082363056085</span>        <span class="mf">2.25168490238616</span>        <span class="mf">0.06491515604763</span>
+<span class="n">C</span>            <span class="mf">0.42423494323872</span>       <span class="o">-</span><span class="mf">1.45148539577987</span>        <span class="mf">0.79538479831033</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.40028045343485</span>        <span class="mf">1.23959706437998</span>        <span class="mf">0.73452517731784</span>
+<span class="n">C</span>            <span class="mf">3.66251230954912</span>        <span class="mf">1.00475672173489</span>        <span class="mf">1.08259311966198</span>
+<span class="n">C</span>            <span class="mf">0.14365149763826</span>       <span class="o">-</span><span class="mf">3.95555023713892</span>        <span class="mf">0.91118196598503</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">4.25721021459863</span>        <span class="mf">0.39844726585583</span>        <span class="mf">1.67794675785264</span>
+<span class="n">C</span>            <span class="mf">5.14863386178168</span>        <span class="mf">1.07197599507234</span>        <span class="mf">1.42894858037114</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.77275034832669</span>       <span class="o">-</span><span class="mf">5.13994447582840</span>        <span class="mf">0.60668692357785</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.20593926439767</span>        <span class="mf">0.44583117295978</span>       <span class="o">-</span><span class="mf">1.11148258102692</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.80524727780564</span>       <span class="o">-</span><span class="mf">0.43169945847273</span>       <span class="o">-</span><span class="mf">0.50895563008287</span>
+<span class="n">H</span>            <span class="mf">3.73396375795546</span>        <span class="mf">2.42972141752258</span>       <span class="o">-</span><span class="mf">0.55124157858279</span>
+<span class="n">H</span>            <span class="mf">3.35560124098091</span>        <span class="mf">3.14584756668454</span>        <span class="mf">1.01426453778633</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.43320670149735</span>       <span class="o">-</span><span class="mf">2.47989437852294</span>        <span class="mf">1.07245708104755</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.74649279399252</span>       <span class="o">-</span><span class="mf">2.63205125963662</span>       <span class="o">-</span><span class="mf">0.55075018369840</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.28435686339904</span>        <span class="mf">0.87349896173282</span>       <span class="o">-</span><span class="mf">2.56570622164894</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.77764831943878</span>        <span class="mf">2.37852774636938</span>       <span class="o">-</span><span class="mf">1.74559624331743</span>
+<span class="n">H</span>            <span class="mf">1.10045874685666</span>        <span class="mf">2.04089452960540</span>        <span class="mf">0.96551158716685</span>
+<span class="n">H</span>            <span class="mf">1.35623984857714</span>        <span class="mf">3.19828298483888</span>       <span class="o">-</span><span class="mf">0.37219697034341</span>
+<span class="n">H</span>            <span class="mf">0.64786384718387</span>       <span class="o">-</span><span class="mf">1.35765077566991</span>        <span class="mf">1.86259993322524</span>
+<span class="n">H</span>            <span class="mf">1.37041338393201</span>       <span class="o">-</span><span class="mf">1.54864147188351</span>        <span class="mf">0.24797788513280</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.85688415770214</span>        <span class="mf">2.22927316800735</span>        <span class="mf">0.59672718397360</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.41375306800835</span>        <span class="mf">1.40599090456599</span>        <span class="mf">1.18221915186467</span>
+<span class="n">H</span>            <span class="mf">3.47264091184327</span>        <span class="mf">0.13643034401191</span>        <span class="mf">0.44003684602247</span>
+<span class="n">H</span>            <span class="mf">3.07393423247992</span>        <span class="mf">0.85408789825825</span>        <span class="mf">1.99820770460226</span>
+<span class="n">H</span>            <span class="mf">0.39073192854148</span>       <span class="o">-</span><span class="mf">3.94380191866237</span>        <span class="mf">1.98125890567555</span>
+<span class="n">H</span>            <span class="mf">1.09263532764405</span>       <span class="o">-</span><span class="mf">4.07715111779153</span>        <span class="mf">0.37207018493030</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.79637849612223</span>       <span class="o">-</span><span class="mf">0.58020445552568</span>        <span class="mf">1.85370039309811</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.38030266458304</span>        <span class="mf">0.88988483294634</span>        <span class="mf">2.64812230808074</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.25489295914165</span>        <span class="mf">0.22661390262107</span>        <span class="mf">1.25834559004993</span>
+<span class="n">H</span>            <span class="mf">5.47806835596330</span>        <span class="mf">0.16138801918681</span>        <span class="mf">1.93896808119261</span>
+<span class="n">H</span>            <span class="mf">5.75695498422814</span>        <span class="mf">1.18910728560937</span>        <span class="mf">0.52530220715744</span>
+<span class="n">H</span>            <span class="mf">5.36133224641826</span>        <span class="mf">1.92201274229434</span>        <span class="mf">2.08696405672930</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.00459785333360</span>       <span class="o">-</span><span class="mf">5.18748938484018</span>       <span class="o">-</span><span class="mf">0.46299441722211</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.30604962300523</span>       <span class="o">-</span><span class="mf">6.08751382128645</span>        <span class="mf">0.89294337567665</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.71987305808669</span>       <span class="o">-</span><span class="mf">5.05272568826932</span>        <span class="mf">1.15031517963084</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="d9fead0d-74b0-4fa4-aba9-ad7fcb863207" name="0e2c3dda-226f-4670-9c4b-fcbd5cb02ad6" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png" for="d9fead0d-74b0-4fa4-aba9-ad7fcb863207">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/crenso-woctanol.png"><img alt="../_images/crenso-woctanol.png" src="../_images/crenso-woctanol.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<p>The DFT ensemble was generated in an implicit solvent, namely octanol.
+Check the influence of including implicit solvation in the generation of the ensemble.
+The help page of CREST can give you insights which options are required for activating the implicit solvation model.</p>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">You learned…</p>
+<ul class="simple">
+<li><p>to find the energetically most favorable conformer of a compound</p></li>
+<li><p>sample a conformational ensemble and compare it with a reference</p></li>
+<li><p>include environment effects like solvation in your conformer search</p></li>
+</ul>
+</div>
+</section>
+<section id="literature">
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-pracht2020"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Philipp Pracht, Fabian Bohle, and Stefan Grimme. Automated exploration of the low-energy chemical space with fast quantum chemical methods. <em>Phys. Chem. Chem. Phys.</em>, 22:7169–7192, 2020. <a class="reference external" href="https://doi.org/10.1039/C9CP06869D">doi:10.1039/C9CP06869D</a>.</p>
+</dd>
+<dt class="label" id="footcite-bannwarth2020"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Christoph Bannwarth, Eike Caldeweyher, Sebastian Ehlert, Andreas Hansen, Philipp Pracht, Jakob Seibert, Sebastian Spicher, and Stefan Grimme. Extended tight‐binding quantum chemistry methods. <em>WIREs Comput. Mol. Sci.</em>, 11:e1493, 2021. <a class="reference external" href="https://doi.org/10.1002/wcms.1493">doi:10.1002/wcms.1493</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="xtb.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Extended tight binding</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="solvation.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Solvation effects</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Sebastian Ehlert<br/>
+  
+      &copy; Copyright 2022 Sebastian Ehlert.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,1697 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Reaction path search &#8212; Daresbury DFTB+ School</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <link rel="shortcut icon" href="../_static/dftbschool-logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="External references" href="../reference/index.html" />
+    <link rel="prev" title="Solvation effects" href="solvation.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dftbschool-logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Tutorial
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="xtb.html">
+     Extended tight binding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conformers.html">
+     Conformational ensembles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="solvation.html">
+     Solvation effects
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Reaction path search
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   External references
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tblite.readthedocs.io/en/latest/spec/index.html">
+     xTB Hamiltonian
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://xtb-docs.readthedocs.io/en/latest/crest.html">
+     CREST documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            
+<div class="sd-fs-4">
+<!--
+<a href="https://fortran-lang.discourse.group/" target="_blank">
+    <i class="fab fa-discourse"></i>
+</a>
+<a href="https://twitter.com/fortranlang" target="_blank">
+    <i class="fab fa-twitter"></i>
+</a>
+<a href="https://github.com/fortran-lang" target="_blank">
+    <i class="fab fa-github"></i>
+</a>
+-->
+</div>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/awvwgk/daresbury"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/awvwgk/daresbury/edit/main/pages/tutorial/reaction.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-gsm">
+   Setting up GSM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cycloalkane-inversion">
+   Cycloalkane inversion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diels-alder-reaction">
+   Diels-Alder reaction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#claisen-rearrangement-reaction">
+   Claisen rearrangement reaction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-metal-reactions">
+   Transition metal reactions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Reaction path search</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#setting-up-gsm">
+   Setting up GSM
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cycloalkane-inversion">
+   Cycloalkane inversion
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#diels-alder-reaction">
+   Diels-Alder reaction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#claisen-rearrangement-reaction">
+   Claisen rearrangement reaction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#transition-metal-reactions">
+   Transition metal reactions
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="reaction-path-search">
+<h1>Reaction path search<a class="headerlink" href="#reaction-path-search" title="Permalink to this headline">#</a></h1>
+<p>For many computational studies the kinetics of a reaction are important to provide insights into the feasibility of reactions.
+Knowledge about the stationary points on the potential energy surface, like the minima and first order saddle points, provides the possibility to compute reaction energies as well as barrier heights.
+To obtain a path from the reactants to the products on the potential energy surface, different techniques have been proposed, here we will be focusing on the growing string method (GSM) to generate reaction paths.<a class="footnote-reference brackets" href="#footcite-zimmerman2013" id="id1">1</a></p>
+<section id="setting-up-gsm">
+<h2>Setting up GSM<a class="headerlink" href="#setting-up-gsm" title="Permalink to this headline">#</a></h2>
+<p>For this tutorial we will use the GSM program available <a class="reference external" href="https://github.com/grimme-lab/molecularGSM/releases/tag/rev1">here</a>.
+While GSM has no native interface with DFTB+, it is possible to create an adapter which allows usage of DFTB+ from GSM.
+The version of GSM used in this tutorial is <code class="docutils literal notranslate"><span class="pre">gsm.orca</span></code>, which is formally an interface to the Orca quantum chemistry program and will invoke a program called <code class="docutils literal notranslate"><span class="pre">ograd</span></code>.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Run script for DFTB+<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Our adapter for DFTB+ is implementing such an <code class="docutils literal notranslate"><span class="pre">ograd</span></code> program as a simple shell script</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">*ograd</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/usr/bin/env bash</span>
+<span class="c1"># SPDX-Identifier: Unlicense</span>
+
+<span class="c1"># Break on errors and uninitialized variables</span>
+<span class="nb">set</span> -eu
+
+<span class="c1"># Get executables</span>
+<span class="nv">dp2orca</span><span class="o">=</span><span class="k">$(</span>which <span class="si">${</span><span class="nv">DP2ORCA</span><span class="k">:-</span><span class="nv">dp2orca</span><span class="p">.awk</span><span class="si">}</span><span class="k">)</span>
+<span class="nv">dftbplus</span><span class="o">=</span><span class="k">$(</span>which <span class="si">${</span><span class="nv">DFTBPLUS</span><span class="k">:-</span><span class="nv">dftb</span><span class="p">+</span><span class="si">}</span><span class="k">)</span>
+
+<span class="c1"># All calculations are performed in scratch</span>
+<span class="k">if</span> <span class="o">[</span> -f dftb_in.hsd <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  cp dftb_in.hsd scratch/
+<span class="k">fi</span>
+<span class="nb">pushd</span> scratch <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> &gt; /dev/null
+
+<span class="c1"># find the input files</span>
+<span class="nv">input_file</span><span class="o">=</span><span class="k">$(</span>realpath orcain<span class="nv">$1</span>.in<span class="k">)</span>
+<span class="nv">output_file</span><span class="o">=</span><span class="k">$(</span>realpath orcain<span class="nv">$1</span>.out<span class="k">)</span>
+<span class="nv">geom_file</span><span class="o">=</span><span class="k">$(</span>realpath structure<span class="nv">$1</span><span class="k">)</span>
+
+<span class="c1"># Prepare input file in xyz format</span>
+wc -l &lt; <span class="s2">&quot;</span><span class="nv">$geom_file</span><span class="s2">&quot;</span> &gt; struc.xyz
+<span class="nb">echo</span> <span class="s2">&quot;Dummy&quot;</span> &gt;&gt; struc.xyz
+cat <span class="s2">&quot;</span><span class="nv">$geom_file</span><span class="s2">&quot;</span> &gt;&gt; struc.xyz
+
+<span class="c1"># Run actual DFTB+ calculation</span>
+<span class="s2">&quot;</span><span class="nv">$dftbplus</span><span class="s2">&quot;</span> &gt; dftb.out
+
+<span class="c1"># Post-processing, convert to Orca standard output</span>
+<span class="k">if</span> <span class="o">[</span> -f results.tag <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="s2">&quot;</span><span class="nv">$dp2orca</span><span class="s2">&quot;</span> results.tag &gt; <span class="s2">&quot;</span><span class="nv">$output_file</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+<span class="k">if</span> <span class="o">[</span> -f autotest.tag <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+  <span class="s2">&quot;</span><span class="nv">$dp2orca</span><span class="s2">&quot;</span> autotest.tag &gt; <span class="s2">&quot;</span><span class="nv">$output_file</span><span class="s2">&quot;</span>
+<span class="k">fi</span>
+
+<span class="nb">popd</span> <span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span> &gt; /dev/null
+</pre></div>
+</div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Convert script gradient output<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">A companion script is provided to turn the DFTB+ produced nicely formatted output found in <code class="docutils literal notranslate"><span class="pre">results.tag</span></code> into the Orca standard output format</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text">*dp2orca.awk</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="highlight-awk notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/awk -f</span>
+<span class="c1"># SPDX-Identifier: Unlicense</span>
+
+<span class="c1"># Produce expected output for GSM driver by writing Orca standard output.</span>
+<span class="nb">END</span> <span class="p">{</span> <span class="nx">orca_output</span><span class="p">(</span><span class="nx">iat</span><span class="p">,</span> <span class="nx">mermin_energy</span><span class="p">,</span> <span class="nx">forces</span><span class="p">)</span> <span class="p">}</span>
+
+<span class="c1"># Write energy and gradient of the system in expected output format.</span>
+<span class="c1"># This routine emulates the necessary parts of an Orca standard output.</span>
+<span class="c1">#</span>
+<span class="c1"># Input</span>
+<span class="c1"># -----</span>
+<span class="c1">#   nat: Number of atoms of the whole system</span>
+<span class="c1">#   energy: Mermin free energy</span>
+<span class="c1">#   forces: Atomic forces for each atom</span>
+<span class="c1">#</span>
+<span class="c1"># Output</span>
+<span class="c1"># ------</span>
+<span class="c1">#   Writes Orca formatted information to standard output</span>
+<span class="kd">function</span> <span class="nx">orca_output</span><span class="p">(</span><span class="nx">nat</span><span class="p">,</span> <span class="nx">energy</span><span class="p">,</span> <span class="nx">forces</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kr">printf</span> <span class="s2">&quot;ORCA-Dummy output for GSM TS Optimizer. Not a real ORCA-Output\n&quot;</span>
+  <span class="kr">printf</span> <span class="s2">&quot;Total Energy       :  %20.14f\n&quot;</span><span class="p">,</span> <span class="nx">energy</span>
+  <span class="kr">printf</span> <span class="s2">&quot;------------------\n&quot;</span>
+  <span class="kr">printf</span> <span class="s2">&quot;CARTESIAN GRADIENT\n&quot;</span>
+  <span class="kr">printf</span> <span class="s2">&quot;------------------\n&quot;</span>
+  <span class="kr">printf</span> <span class="s2">&quot;\n&quot;</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">jat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">jat</span> <span class="o">&lt;=</span> <span class="nx">nat</span><span class="p">;</span> <span class="nx">jat</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kr">printf</span> <span class="s2">&quot;%4d%4s   :%15.9f%15.9f%15.9f\n&quot;</span><span class="p">,</span> <span class="nx">jat</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">&quot;X&quot;</span><span class="p">,</span>
+           <span class="o">-</span><span class="nx">forces</span><span class="p">[</span><span class="nx">jat</span><span class="p">][</span><span class="mi">1</span><span class="p">],</span> <span class="o">-</span><span class="nx">forces</span><span class="p">[</span><span class="nx">jat</span><span class="p">][</span><span class="mi">2</span><span class="p">],</span> <span class="o">-</span><span class="nx">forces</span><span class="p">[</span><span class="nx">jat</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Collect the energy and reset the flag.</span>
+<span class="nx">read_energy</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+  <span class="nx">mermin_energy</span> <span class="o">=</span> <span class="o">$</span><span class="mi">1</span>
+  <span class="nx">read_energy</span><span class="o">--</span>
+<span class="p">}</span>
+
+<span class="c1"># Collect a line from the force output.</span>
+<span class="nx">read_forces</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">{</span>
+  <span class="nx">iat</span><span class="o">++</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">ic</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">ic</span> <span class="o">&lt;=</span> <span class="nb">NF</span><span class="p">;</span> <span class="nx">ic</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">forces</span><span class="p">[</span><span class="nx">iat</span><span class="p">][</span><span class="nx">ic</span><span class="p">]</span> <span class="o">=</span> <span class="o">$</span><span class="nx">ic</span>
+    <span class="nx">read_forces</span><span class="o">--</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1"># Label for total energy found.</span>
+<span class="sr">/^mermin_energy/</span> <span class="p">{</span> <span class="nx">read_energy</span> <span class="o">=</span> <span class="mi">1</span> <span class="p">}</span>
+
+<span class="c1"># Label for gradient found.</span>
+<span class="sr">/^forces/</span> <span class="p">{</span> <span class="kr">gsub</span><span class="p">(</span><span class="sr">/[:,]/</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span> <span class="p">}</span>
+<span class="sr">/^forces/</span> <span class="p">{</span>
+  <span class="nx">read_forces</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="k">for</span> <span class="p">(</span><span class="nx">dim</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="nx">dim</span> <span class="o">&lt;=</span> <span class="o">$</span><span class="mi">3</span><span class="p">;</span> <span class="nx">dim</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nx">read_forces</span> <span class="o">*=</span> <span class="o">$</span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="nx">dim</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</details><p>Make sure the <code class="docutils literal notranslate"><span class="pre">ograd</span></code> and <code class="docutils literal notranslate"><span class="pre">dp2orca.awk</span></code> script can be found in your executable <code class="docutils literal notranslate"><span class="pre">PATH</span></code> and are made executable.
+With this setup we can run DFTB+ for computing our reaction path.</p>
+</section>
+<section id="cycloalkane-inversion">
+<h2>Cycloalkane inversion<a class="headerlink" href="#cycloalkane-inversion" title="Permalink to this headline">#</a></h2>
+<p>For our first application we will calculate the inversion barrier of a cyclohexane molecule.
+Create a new directory for this reaction and create the input file GSM.
+The most important settings are highlighted.</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text">inpfileq</span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># FSM/GSM/SSM inpfileq
+------------ String Info --------------------------------
+SM_TYPE                 GSM    # SSM, FSM or GSM
+RESTART                 0      # read restart.xyz
+MAX_OPT_ITERS           80     # maximum iterations
+STEP_OPT_ITERS          30     # for FSM/SSM
+CONV_TOL                0.0005 # perp grad
+ADD_NODE_TOL            0.1    # for GSM
+SCALING                 1.0    # for opt steps
+SSM_DQMAX               0.8    # add step size
+GROWTH_DIRECTION        0      # normal/react/prod: 0/1/2
+INT_THRESH              2.0    # intermediate detection
+MIN_SPACING             5.0    # node spacing SSM
+BOND_FRAGMENTS          1      # make IC&#39;s for fragments
+INITIAL_OPT             0      # opt steps first node
+FINAL_OPT               150    # opt steps last SSM node
+PRODUCT_LIMIT           100.0  # kcal/mol
+<span class="hll">TS_FINAL_TYPE           0      # any/delta bond: 0/1
+</span><span class="hll">NNODES                  15     # including endpoints
+</span>---------------------------------------------------------
+</pre></div>
+</div>
+</div>
+<dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">TS_FINAL_TYPE</span></code>:</dt><dd><p>Declares whether a bond is broken in the reaction.
+<code class="docutils literal notranslate"><span class="pre">0</span></code> no bond breakage, <code class="docutils literal notranslate"><span class="pre">1</span></code> expect bond breakage.</p>
+</dd>
+<dt><code class="docutils literal notranslate"><span class="pre">NNODES</span></code>:</dt><dd><p>Number of nodes in the reaction path.
+The number of nodes determines the computational cost of the reaction path search.</p>
+</dd>
+</dl>
+<p>Next we need to provide the starting structures.
+For this purpose we use preoptimized structure of cyclohexane rotamers.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="ecc42217-f468-4859-93f7-feef46e62c58" name="97219f36-7a8a-4373-b7fd-4c0c90299589" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz" for="ecc42217-f468-4859-93f7-feef46e62c58">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">reactant.xyz</span><a class="headerlink" href="#id7" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">18</span>
+ 
+<span class="n">C</span>         <span class="mf">0.72407050811334</span>    <span class="mf">1.25235108200516</span>   <span class="o">-</span><span class="mf">0.24338094705465</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.72343762657313</span>    <span class="mf">1.25319617766380</span>    <span class="mf">0.23929059852918</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">1.44731174776017</span>   <span class="o">-</span><span class="mf">0.00012207898744</span>   <span class="o">-</span><span class="mf">0.24387881064420</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.72448059275055</span>   <span class="o">-</span><span class="mf">1.25351379257321</span>    <span class="mf">0.24067027167326</span>
+<span class="n">C</span>         <span class="mf">0.72302665800789</span>   <span class="o">-</span><span class="mf">1.25441395902634</span>   <span class="o">-</span><span class="mf">0.24200633751896</span>
+<span class="n">C</span>         <span class="mf">1.44695184726671</span>   <span class="o">-</span><span class="mf">0.00106936630608</span>    <span class="mf">0.24102971332150</span>
+<span class="n">H</span>         <span class="mf">0.74079379322633</span>    <span class="mf">1.27977999101331</span>   <span class="o">-</span><span class="mf">1.33568337236737</span>
+<span class="n">H</span>         <span class="mf">1.23911262989111</span>    <span class="mf">2.14407418287692</span>    <span class="mf">0.12103331256485</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">1.23773720847930</span>    <span class="mf">2.14497568327721</span>   <span class="o">-</span><span class="mf">0.12601425207736</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">0.74014360366626</span>    <span class="mf">1.28171032471934</span>    <span class="mf">1.33155904823478</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">2.47725186596728</span>    <span class="mf">0.00050340452584</span>    <span class="mf">0.12007291068245</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">1.47894487592394</span>   <span class="o">-</span><span class="mf">0.00071222738449</span>   <span class="o">-</span><span class="mf">1.33620018565333</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">0.74120355748858</span>   <span class="o">-</span><span class="mf">1.28080687484113</span>    <span class="mf">1.33297520098609</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">1.23953398541620</span>   <span class="o">-</span><span class="mf">2.14527362819323</span>   <span class="o">-</span><span class="mf">0.12363941525185</span>
+<span class="n">H</span>         <span class="mf">1.23731965319244</span>   <span class="o">-</span><span class="mf">2.14616191699557</span>    <span class="mf">0.12338823394548</span>
+<span class="n">H</span>         <span class="mf">0.73972201150389</span>   <span class="o">-</span><span class="mf">1.28305135703018</span>   <span class="o">-</span><span class="mf">1.33427294070718</span>
+<span class="n">H</span>         <span class="mf">1.47879051289637</span>   <span class="o">-</span><span class="mf">0.00048052377193</span>    <span class="mf">1.33334318895494</span>
+<span class="n">H</span>         <span class="mf">2.47682744992731</span>   <span class="o">-</span><span class="mf">0.00169512097196</span>   <span class="o">-</span><span class="mf">0.12311621761763</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="603792e0-c062-4c47-96cc-534ed0ea9057" name="97219f36-7a8a-4373-b7fd-4c0c90299589" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png" for="603792e0-c062-4c47-96cc-534ed0ea9057">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/reactant.png"><img alt="../_images/reactant.png" src="../_images/reactant.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="8e1f619d-387f-428c-af34-8d18947bd6e0" name="ffeaa54c-2a0e-428a-b6ac-7d33d1372041" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz" for="8e1f619d-387f-428c-af34-8d18947bd6e0">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">product.xyz</span><a class="headerlink" href="#id8" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">18</span>
+ 
+<span class="n">C</span>         <span class="mf">0.73801367871811</span>    <span class="mf">1.26986541848913</span>   <span class="o">-</span><span class="mf">0.29891956390957</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.72425034407001</span>    <span class="mf">1.23660126909089</span>    <span class="mf">0.13751131482082</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">1.44534047314084</span>   <span class="o">-</span><span class="mf">0.03177648038732</span>   <span class="o">-</span><span class="mf">0.35671028842475</span>
+<span class="n">C</span>        <span class="o">-</span><span class="mf">0.51312926640361</span>   <span class="o">-</span><span class="mf">0.95386524177349</span>   <span class="o">-</span><span class="mf">1.13921033932034</span>
+<span class="n">C</span>         <span class="mf">0.73874270548611</span>   <span class="o">-</span><span class="mf">1.27320174695686</span>   <span class="o">-</span><span class="mf">0.32527750643084</span>
+<span class="n">C</span>         <span class="mf">1.46163460859193</span>    <span class="mf">0.00218599807452</span>    <span class="mf">0.14815613748902</span>
+<span class="n">H</span>         <span class="mf">0.80167461165837</span>    <span class="mf">1.37397900540374</span>   <span class="o">-</span><span class="mf">1.38290508569736</span>
+<span class="n">H</span>         <span class="mf">1.22823701649042</span>    <span class="mf">2.14109015941832</span>    <span class="mf">0.14110672721895</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">1.22954714616749</span>    <span class="mf">2.12895335124983</span>   <span class="o">-</span><span class="mf">0.23651035666162</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">0.75981821609326</span>    <span class="mf">1.27774751863575</span>    <span class="mf">1.22804091215143</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">1.84194534594910</span>   <span class="o">-</span><span class="mf">0.58465393222957</span>    <span class="mf">0.49789315375467</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">2.29332568018213</span>    <span class="mf">0.23757670740058</span>   <span class="o">-</span><span class="mf">0.98938629993452</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">1.03732116020641</span>   <span class="o">-</span><span class="mf">1.88207230826469</span>   <span class="o">-</span><span class="mf">1.37787118249708</span>
+<span class="n">H</span>        <span class="o">-</span><span class="mf">0.23326413070136</span>   <span class="o">-</span><span class="mf">0.48637114937456</span>   <span class="o">-</span><span class="mf">2.08427188018927</span>
+<span class="n">H</span>         <span class="mf">0.44512664267991</span>   <span class="o">-</span><span class="mf">1.87161892139158</span>    <span class="mf">0.54024210888424</span>
+<span class="n">H</span>         <span class="mf">1.41101252131720</span>   <span class="o">-</span><span class="mf">1.88609677273023</span>   <span class="o">-</span><span class="mf">0.92920597460851</span>
+<span class="n">H</span>         <span class="mf">1.52271848431407</span>    <span class="mf">0.00555688995561</span>    <span class="mf">1.23838178865502</span>
+<span class="n">H</span>         <span class="mf">2.48432149365809</span>    <span class="mf">0.02132023538992</span>   <span class="o">-</span><span class="mf">0.23310366530028</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="7c27027d-43db-4a9b-98fd-1eece1feea35" name="ffeaa54c-2a0e-428a-b6ac-7d33d1372041" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png" for="7c27027d-43db-4a9b-98fd-1eece1feea35">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/product.png"><img alt="../_images/product.png" src="../_images/product.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<p>For our first calculation we will use GFN2-xTB</p>
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id9" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+  <span class="nv">Method</span> <span class="o">=</span> <span class="s2">&quot;GFN2-xTB&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">WriteAutotestTag</span> <span class="o">=</span> Yes
+  <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No
+<span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<p>Prepare the computation by creating the initial string file in the scratch directory</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>❯ ln -s <span class="k">$(</span>which ograd<span class="k">)</span>
+❯ mkdir scratch
+❯ cat reactant.xyz product.xyz &gt; scratch/initial0000.xyz
+❯ tree .
+.
+├── dftb_in.hsd
+├── inpfileq
+├── ograd -&gt; /path/to/ograd
+├── product.xyz
+├── reactant.xyz
+└── scratch
+    └── initial0000.xyz
+</pre></div>
+</div>
+<p>Before we run the GSM calculation, we should make sure that our setup does work and all scripts are found correctly</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ awk &#39;NR &gt; 2 {print $0}&#39; reactant.xyz &gt; scratch/structure0000.test
+❯ ./ograd 0000.test
+❯ cat scratch/orcain0000.test.out
+ORCA-Dummy output for GSM TS Optimizer. Not a real ORCA-Output
+Total Energy       :    -18.98671575397980
+------------------
+CARTESIAN GRADIENT
+------------------
+
+   0   X   :   -0.000022175   -0.000032523    0.000045093
+   1   X   :    0.000018687   -0.000029431   -0.000041726
+   2   X   :    0.000040745    0.000002303    0.000047600
+   3   X   :    0.000021156    0.000031674   -0.000044042
+   4   X   :   -0.000018965    0.000030712    0.000042849
+   5   X   :   -0.000041579   -0.000002010   -0.000046430
+   6   X   :    0.000010145    0.000017500   -0.000037834
+   7   X   :    0.000021061    0.000036729   -0.000024695
+   8   X   :   -0.000019945    0.000033848    0.000026075
+   9   X   :   -0.000009533    0.000015825    0.000034222
+  10   X   :   -0.000043791   -0.000000267   -0.000026704
+  11   X   :   -0.000019442   -0.000000158   -0.000040573
+  12   X   :   -0.000009583   -0.000016064    0.000037413
+  13   X   :   -0.000022066   -0.000037434    0.000025531
+  14   X   :    0.000019614   -0.000034118   -0.000025219
+  15   X   :    0.000009869   -0.000017038   -0.000034806
+  16   X   :    0.000020887    0.000000274    0.000039322
+  17   X   :    0.000044914    0.000000178    0.000023924
+</pre></div>
+</div>
+<p>Now we are ready to start the GSM calculation</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ gsm.orca | tee gsm.out
+ Number of QC processors: 1
+***** Starting Initialization *****
+ runend 1
+  -structure filename from input: scratch/initial0000.xyz
+Initializing Tolerances and Parameters...
+  -Opening inpfileq
+  -reading file...
+  -using GSM
+  -RESTART: 0
+  -MAX_OPT_ITERS: 80
+  -STEP_OPT_ITERS: 30
+  -CONV_TOL = 0.0005
+  -ADD_NODE_TOL = 0.1
+  -SCALING = 1
+  -SSM_DQMAX: 0.8
+  -SSM_DQMIN: 0.2
+  -GROWTH_DIRECTION = 0
+  -INT_THRESH: 2
+  -SSM_MIN_SPACING: 5
+  -BOND_FRAGMENTS = 1
+  -INITIAL_OPT: 0
+  -FINAL_OPT: 150
+  -PRODUCT_LIMIT: 100
+  -TS_FINAL_TYPE: 0
+  -NNODES = 15
+ Done reading inpfileq
+
+...
+
+ oi: 8 nmax: 8 TSnode0: 8 overlapn: 0
+<span class="hll"> string E (kcal/mol):  0.0 0.6 2.2 4.3 6.5 8.7 10.5 11.6 11.8 11.2 10.1 8.9 7.7 6.9 6.5
+</span> string E (au):  -18.98671575 -18.98573720 -18.98326126 -18.97986295 -18.97631228 -18.97290083 -18.97002972 -18.96825288 -18.96793564 -18.96894127 -18.97064022 -18.97246218 -18.97450365 -18.97574147 -18.97639692
+ string E (au) - force*distance:  -18.98671575 -18.98573720 -18.98326126 -18.97986295 -18.97631228 -18.97290083 -18.97002972 -18.96825288 -18.96793564 -18.96894127 -18.97064022 -18.97246218 -18.97450365 -18.97574147 -18.97639692
+ max E: 11.784524 for node: 8
+
+...
+</pre></div>
+</div>
+<p>In the output we can find the energy of the forward barrier of 11.8 kcal/mol as estimated by the path search.
+The final reaction path can be found in <code class="docutils literal notranslate"><span class="pre">stringfile.xyz0000</span></code> and can be visualized with the molecule viewer of your choice.
+Note that the comment line contains the energy difference to the reactant in kcal/mol and some viewers, like <a class="reference external" href="https://www.theochem.ru.nl/molden/">molden</a>, can plot this while visualizing the path.
+In <a class="reference external" href="http://jmol.sourceforge.net/">jmol</a> the energy is visible in the lower left corner</p>
+<a class="reference internal image-reference" href="../_images/ts.png"><img alt="../_images/ts.png" src="../_images/ts.png" style="width: 266.0px; height: 319.0px;" /></a>
+<p>To visualize the path extract the relative energies from the comment lines with</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ awk &#39;$1 ~ /-?[0-9]+\.[0-9]+/ {print $0}&#39; stringfile.xyz0000 &gt; path000.txt
+</pre></div>
+</div>
+<p>You can view the energy profile with <a class="reference external" href="https://plasma-gate.weizmann.ac.il/Grace/">xmgrace</a>.</p>
+<div class="info admonition">
+<p class="admonition-title">Exercise</p>
+<p>Compute the inversion barrier with GFN2-xTB and plot the energy profile.</p>
+</div>
+</section>
+<section id="diels-alder-reaction">
+<h2>Diels-Alder reaction<a class="headerlink" href="#diels-alder-reaction" title="Permalink to this headline">#</a></h2>
+<p>For the next example we will investigate a reaction path for a Diels-Alder reaction, including bond breaking / formation in the path search.
+This time we want to investigate the effect of different methods for the final barrier height.
+In the input file we choose more nodes and set the bond breaking flag.</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">inpfileq</span><a class="headerlink" href="#id10" title="Permalink to this code">#</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># FSM/GSM/SSM inpfileq
+------------ String Info --------------------------------
+SM_TYPE                 GSM    # SSM, FSM or GSM
+RESTART                 0      # read restart.xyz
+MAX_OPT_ITERS           80     # maximum iterations
+STEP_OPT_ITERS          30     # for FSM/SSM
+CONV_TOL                0.0005 # perp grad
+ADD_NODE_TOL            0.1    # for GSM
+SCALING                 1.0    # for opt steps
+SSM_DQMAX               0.8    # add step size
+GROWTH_DIRECTION        0      # normal/react/prod: 0/1/2
+INT_THRESH              2.0    # intermediate detection
+MIN_SPACING             5.0    # node spacing SSM
+BOND_FRAGMENTS          1      # make IC&#39;s for fragments
+INITIAL_OPT             0      # opt steps first node
+FINAL_OPT               150    # opt steps last SSM node
+PRODUCT_LIMIT           100.0  # kcal/mol
+<span class="hll">TS_FINAL_TYPE           1      # any/delta bond: 0/1
+</span><span class="hll">NNODES                  20     # including endpoints
+</span>---------------------------------------------------------
+</pre></div>
+</div>
+</div>
+<p>For the cycloaddition we use a furan and ethene molecule</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="f4f2befa-ecaf-46a0-a5be-08feb65b8bb7" name="8ccdbcfe-ab6c-4b36-a78e-383a44550b98" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-1" for="f4f2befa-ecaf-46a0-a5be-08feb65b8bb7">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">reactant.xyz</span><a class="headerlink" href="#id11" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">15</span>
+
+<span class="n">C</span>   <span class="o">-</span><span class="mf">1.05403119</span>  <span class="o">-</span><span class="mf">0.85921125</span>  <span class="o">-</span><span class="mf">1.07844148</span>
+<span class="n">O</span>   <span class="o">-</span><span class="mf">0.74716995</span>  <span class="o">-</span><span class="mf">1.59204846</span>   <span class="mf">0.00037929</span>
+<span class="n">C</span>    <span class="mf">1.91999122</span>   <span class="mf">0.31825506</span>  <span class="o">-</span><span class="mf">0.65929558</span>
+<span class="n">C</span>   <span class="o">-</span><span class="mf">1.56348463</span>   <span class="mf">0.34378897</span>  <span class="o">-</span><span class="mf">0.70923752</span>
+<span class="n">C</span>   <span class="o">-</span><span class="mf">1.05432765</span>  <span class="o">-</span><span class="mf">0.85883374</span>   <span class="mf">1.07895685</span>
+<span class="n">C</span>    <span class="mf">1.92016161</span>   <span class="mf">0.31774885</span>   <span class="mf">0.65905212</span>
+<span class="n">C</span>   <span class="o">-</span><span class="mf">1.56373749</span>   <span class="mf">0.34366980</span>   <span class="mf">0.70888173</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">0.86626022</span>  <span class="o">-</span><span class="mf">1.30691107</span>  <span class="o">-</span><span class="mf">2.03849048</span>
+<span class="n">H</span>    <span class="mf">2.21980037</span>  <span class="o">-</span><span class="mf">0.54462844</span>  <span class="o">-</span><span class="mf">1.23619995</span>
+<span class="n">H</span>    <span class="mf">1.61547946</span>   <span class="mf">1.18008308</span>  <span class="o">-</span><span class="mf">1.23636699</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">1.89753571</span>   <span class="mf">1.13638114</span>  <span class="o">-</span><span class="mf">1.35561033</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">0.86679445</span>  <span class="o">-</span><span class="mf">1.30614725</span>   <span class="mf">2.03907198</span>
+<span class="n">H</span>    <span class="mf">2.21960266</span>  <span class="o">-</span><span class="mf">0.54586684</span>   <span class="mf">1.23524723</span>
+<span class="n">H</span>    <span class="mf">1.61610877</span>   <span class="mf">1.17913244</span>   <span class="mf">1.23678680</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">1.89780281</span>   <span class="mf">1.13623322</span>   <span class="mf">1.35526633</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="3d3fc744-dbc1-44b9-b54f-8e1eb1a50e85" name="8ccdbcfe-ab6c-4b36-a78e-383a44550b98" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-1" for="3d3fc744-dbc1-44b9-b54f-8e1eb1a50e85">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/reactant1.png"><img alt="../_images/reactant1.png" src="../_images/reactant1.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="cfa5c8ce-cd55-40bc-adae-9d94b1c183bf" name="ad74e4a4-2b49-4195-8506-d9fc305196cd" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-1" for="cfa5c8ce-cd55-40bc-adae-9d94b1c183bf">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">product.xyz</span><a class="headerlink" href="#id12" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">15</span>
+
+<span class="n">C</span>   <span class="o">-</span><span class="mf">0.33650300</span>  <span class="o">-</span><span class="mf">0.52567500</span>  <span class="o">-</span><span class="mf">1.05221900</span>
+<span class="n">O</span>   <span class="o">-</span><span class="mf">0.49920800</span>  <span class="o">-</span><span class="mf">1.44888700</span>   <span class="mf">0.00032300</span>
+<span class="n">C</span>    <span class="mf">1.08232400</span>   <span class="mf">0.03657400</span>  <span class="o">-</span><span class="mf">0.76729600</span>
+<span class="n">C</span>   <span class="o">-</span><span class="mf">1.29917500</span>   <span class="mf">0.57935400</span>  <span class="o">-</span><span class="mf">0.66347200</span>
+<span class="n">C</span>   <span class="o">-</span><span class="mf">0.33671300</span>  <span class="o">-</span><span class="mf">0.52527900</span>   <span class="mf">1.05252700</span>
+<span class="n">C</span>    <span class="mf">1.08262000</span>   <span class="mf">0.03575900</span>   <span class="mf">0.76715400</span>
+<span class="n">C</span>   <span class="o">-</span><span class="mf">1.29967800</span>   <span class="mf">0.57933100</span>   <span class="mf">0.66328300</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">0.47204500</span>  <span class="o">-</span><span class="mf">0.99959700</span>  <span class="o">-</span><span class="mf">2.02194900</span>
+<span class="n">H</span>    <span class="mf">1.84062900</span>  <span class="o">-</span><span class="mf">0.63339500</span>  <span class="o">-</span><span class="mf">1.16910900</span>
+<span class="n">H</span>    <span class="mf">1.22478200</span>   <span class="mf">1.02637400</span>  <span class="o">-</span><span class="mf">1.19722100</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">1.79017300</span>   <span class="mf">1.24152200</span>  <span class="o">-</span><span class="mf">1.35666900</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">0.47213100</span>  <span class="o">-</span><span class="mf">0.99881000</span>   <span class="mf">2.02246200</span>
+<span class="n">H</span>    <span class="mf">1.84129300</span>  <span class="o">-</span><span class="mf">0.63425300</span>   <span class="mf">1.16825900</span>
+<span class="n">H</span>    <span class="mf">1.22479600</span>   <span class="mf">1.02528600</span>   <span class="mf">1.19777000</span>
+<span class="n">H</span>   <span class="o">-</span><span class="mf">1.79081700</span>   <span class="mf">1.24169700</span>   <span class="mf">1.35615700</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="75df88a4-56e7-4dce-80ad-bc498f6d407b" name="ad74e4a4-2b49-4195-8506-d9fc305196cd" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-1" for="75df88a4-56e7-4dce-80ad-bc498f6d407b">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/product1.png"><img alt="../_images/product1.png" src="../_images/product1.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<p>For this path we want to investigate GFN1-xTB, GFN2-xTB, DFTB3-D4, DFTB2-D4, and LC-DFTB2-D4.
+To ease the reaction path search the reactants should be optimized before running the path search.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="b51e5102-553d-481c-aadb-513afafc2f6f" name="db902003-359d-478a-8431-1970cba908c5" type="radio">
+</input><label class="sd-tab-label" for="b51e5102-553d-481c-aadb-513afafc2f6f">
+GFN2-xTB</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id13">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id13" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+  <span class="nv">Method</span> <span class="o">=</span> <span class="s2">&quot;GFN2-xTB&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">WriteAutotestTag</span> <span class="o">=</span> Yes
+  <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No
+<span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="c43df6ae-1c42-4a9d-a61c-bb3348643764" name="db902003-359d-478a-8431-1970cba908c5" type="radio">
+</input><label class="sd-tab-label" for="c43df6ae-1c42-4a9d-a61c-bb3348643764">
+GFN1-xTB</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id14">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id14" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+  <span class="nv">Method</span> <span class="o">=</span> <span class="s2">&quot;GFN1-xTB&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">WriteAutotestTag</span> <span class="o">=</span> Yes
+  <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No
+<span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="dac5ba61-b572-4b73-9046-50f152a3cc51" name="db902003-359d-478a-8431-1970cba908c5" type="radio">
+</input><label class="sd-tab-label" for="dac5ba61-b572-4b73-9046-50f152a3cc51">
+DFTB3-D4</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id15">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id15" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> DFTB <span class="o">{</span>
+  <span class="nv">SCC</span> <span class="o">=</span> Yes
+  MaxAngularMomentum <span class="o">{</span>
+    <span class="nv">H</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+    <span class="nv">C</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+    <span class="nv">O</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+  <span class="o">}</span>
+  HubbardDerivs <span class="o">{</span>
+    <span class="nv">H</span> <span class="o">=</span> -0.1857
+    <span class="nv">C</span> <span class="o">=</span> -0.1492
+    <span class="nv">O</span> <span class="o">=</span> -0.1575
+  <span class="o">}</span>
+  <span class="nv">ThirdOrderFull</span> <span class="o">=</span> Yes
+  <span class="nv">HCorrection</span> <span class="o">=</span> Damping <span class="o">{</span> <span class="nv">Exponent</span> <span class="o">=</span> <span class="m">4</span>.0 <span class="o">}</span>
+  <span class="nv">SlaterKosterFiles</span> <span class="o">=</span> Type2FileNames <span class="o">{</span>
+    <span class="nv">Prefix</span> <span class="o">=</span> <span class="s2">&quot;slakos/origin/3ob-3-1/&quot;</span>
+    <span class="nv">Separator</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+    <span class="nv">Suffix</span> <span class="o">=</span> <span class="s2">&quot;.skf&quot;</span>
+  <span class="o">}</span>
+  <span class="nv">Dispersion</span> <span class="o">=</span> DFTD4 <span class="o">{</span>
+    <span class="nv">s6</span> <span class="o">=</span> <span class="m">1</span>.0
+    <span class="nv">s9</span> <span class="o">=</span> <span class="m">0</span>.0
+    <span class="nv">s8</span> <span class="o">=</span> <span class="m">0</span>.4727337
+    <span class="nv">a1</span> <span class="o">=</span> <span class="m">0</span>.5467502
+    <span class="nv">a2</span> <span class="o">=</span> <span class="m">4</span>.4955068
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">WriteAutotestTag</span> <span class="o">=</span> Yes
+  <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No
+<span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="6f5e35f6-2c9d-4272-9d08-6164eebdb521" name="db902003-359d-478a-8431-1970cba908c5" type="radio">
+</input><label class="sd-tab-label" for="6f5e35f6-2c9d-4272-9d08-6164eebdb521">
+DFTB2-D4</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id16">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id16" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> DFTB <span class="o">{</span>
+  <span class="nv">SCC</span> <span class="o">=</span> Yes
+  MaxAngularMomentum <span class="o">{</span>
+    <span class="nv">H</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+    <span class="nv">C</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+    <span class="nv">O</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+  <span class="o">}</span>
+  <span class="nv">SlaterKosterFiles</span> <span class="o">=</span> Type2FileNames <span class="o">{</span>
+    <span class="nv">Prefix</span> <span class="o">=</span> <span class="s2">&quot;slakos/origin/mio-1-1/&quot;</span>
+    <span class="nv">Separator</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+    <span class="nv">Suffix</span> <span class="o">=</span> <span class="s2">&quot;.skf&quot;</span>
+  <span class="o">}</span>
+  <span class="nv">Dispersion</span> <span class="o">=</span> DFTD4 <span class="o">{</span>
+    <span class="nv">s6</span> <span class="o">=</span> <span class="m">1</span>.0
+    <span class="nv">s9</span> <span class="o">=</span> <span class="m">0</span>.0
+    <span class="nv">s8</span> <span class="o">=</span> <span class="m">1</span>.1948145
+    <span class="nv">a1</span> <span class="o">=</span> <span class="m">0</span>.6074567
+    <span class="nv">a2</span> <span class="o">=</span> <span class="m">4</span>.9336133
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">WriteAutotestTag</span> <span class="o">=</span> Yes
+  <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No
+<span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="5f6b4397-bff1-489b-8290-d84a4b912e37" name="db902003-359d-478a-8431-1970cba908c5" type="radio">
+</input><label class="sd-tab-label" for="5f6b4397-bff1-489b-8290-d84a4b912e37">
+LC-DFTB2-D4</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id17">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id17" title="Permalink to this code">#</a></div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> DFTB <span class="o">{</span>
+  <span class="nv">SCC</span> <span class="o">=</span> Yes
+  MaxAngularMomentum <span class="o">{</span>
+    <span class="nv">H</span> <span class="o">=</span> <span class="s2">&quot;s&quot;</span>
+    <span class="nv">C</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+    <span class="nv">O</span> <span class="o">=</span> <span class="s2">&quot;p&quot;</span>
+  <span class="o">}</span>
+  <span class="nv">RangeSeparated</span> <span class="o">=</span> LC <span class="o">{</span> <span class="nv">Screening</span> <span class="o">=</span> NeighbourBased <span class="o">{}</span> <span class="o">}</span>
+  <span class="nv">SlaterKosterFiles</span> <span class="o">=</span> Type2FileNames <span class="o">{</span>
+    <span class="nv">Prefix</span> <span class="o">=</span> <span class="s2">&quot;slakos/origin/ob2-1-1/shift/&quot;</span>
+    <span class="nv">Separator</span> <span class="o">=</span> <span class="s2">&quot;-&quot;</span>
+    <span class="nv">Suffix</span> <span class="o">=</span> <span class="s2">&quot;.skf&quot;</span>
+  <span class="o">}</span>
+  <span class="nv">Dispersion</span> <span class="o">=</span> DFTD4 <span class="o">{</span>
+    <span class="nv">s6</span> <span class="o">=</span> <span class="m">1</span>.0
+    <span class="nv">s9</span> <span class="o">=</span> <span class="m">0</span>.0
+    <span class="nv">s8</span> <span class="o">=</span> <span class="m">2</span>.7611320
+    <span class="nv">a1</span> <span class="o">=</span> <span class="m">0</span>.6037249
+    <span class="nv">a2</span> <span class="o">=</span> <span class="m">5</span>.3900004
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span>
+  <span class="nv">WriteAutotestTag</span> <span class="o">=</span> Yes
+  <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No
+<span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>For each of the five models we create a separate calculation directory and add the required <code class="docutils literal notranslate"><span class="pre">dftb_in.hsd</span></code> as well as the reactant and product input structure.
+To optimize both structures we perform a short optimization with the reactant and product.
+An example for running the optimization is given below</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>❯ <span class="k">for</span> i <span class="k">in</span> reactant product<span class="p">;</span> <span class="k">do</span>
+mkdir -p preopt-<span class="nv">$i</span>
+cp <span class="nv">$i</span>.xyz preopt-<span class="nv">$i</span>/struc.xyz
+cp dftb_in.hsd preopt-<span class="nv">$i</span>/dftb_in.hsd
+<span class="nb">echo</span> <span class="s2">&quot;Driver = GeometryOptimization {}&quot;</span> &gt;&gt; preopt-<span class="nv">$i</span>/dftb_in.hsd
+<span class="nb">pushd</span> preopt-<span class="nv">$i</span>
+dftb+ <span class="p">|</span> tee dftb.out
+<span class="nb">popd</span>
+<span class="k">done</span>
+</pre></div>
+</div>
+<p>From the preoptimized structures we again setup a reaction path for the GSM program.
+The following directory structure should be present before starting the actual reaction path search.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>❯ ln -s <span class="k">$(</span>which ograd<span class="k">)</span>
+❯ mkdir scratch
+❯ cat preopt-reactant/geo_end.xyz preopt-product/geo_end.xyz &gt; scratch/initial0000.xyz
+❯ tree .
+.
+├── dftb_in.hsd
+├── inpfileq
+├── ograd -&gt; /path/to/ograd
+├── preopt-product
+│   └── ...
+├── preopt-reactant
+│   └── ...
+├── product.xyz
+├── reactant.xyz
+└── scratch
+    └── initial0000.xyz
+</pre></div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">Exercise</p>
+<p>Compare the barrier heights obtained with the different methods.
+Does any of the tested methods provide significant different results?
+Is the relative difference of the barrier heights in this case as expected?</p>
+</div>
+</section>
+<section id="claisen-rearrangement-reaction">
+<h2>Claisen rearrangement reaction<a class="headerlink" href="#claisen-rearrangement-reaction" title="Permalink to this headline">#</a></h2>
+<p>Another example is the Claisen rearrangement.
+As starting structure we use <a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/compound/221523">allyl vinyl ether</a> and the corresponding <a class="reference external" href="https://pubchem.ncbi.nlm.nih.gov/compound/16418">pentenale</a>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="a7807470-fb98-4dc9-8a0f-e7e4671e956a" name="a8819c9c-c843-453a-89d7-f9b09b27dcae" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-2" for="a7807470-fb98-4dc9-8a0f-e7e4671e956a">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id18">
+<div class="code-block-caption"><span class="caption-text">reactant.xyz</span><a class="headerlink" href="#id18" title="Permalink to this code">#</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>14
+
+C       0.33830681      -0.40028145       0.06863012
+C       0.10595161      -0.26718767       1.36421188
+H       1.33077226      -0.61906183      -0.27493881
+H      -0.42216146      -0.28728678      -0.68244497
+O      -1.06599246      -0.01419187       2.00107453
+H       0.89080386      -0.36692363       2.10223944
+C      -2.24339525       0.08535540       1.21865884
+H      -3.06296651       0.00347496       1.94095352
+C      -2.38810216       1.37002374       0.45318426
+H      -2.30704191      -0.76808842       0.53050462
+H      -3.21531691       1.36845744      -0.24273208
+C      -1.61866094       2.43160218       0.59926563
+H      -0.79697159       2.43969569       1.29630648
+H      -1.77723230       3.33005423       0.02997950
+</pre></div>
+</div>
+</div>
+</div>
+<input id="d9f9408f-584d-4102-8c52-ff3b202022af" name="a8819c9c-c843-453a-89d7-f9b09b27dcae" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-2" for="d9f9408f-584d-4102-8c52-ff3b202022af">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/reactant2.png"><img alt="../_images/reactant2.png" src="../_images/reactant2.png" style="width: 316.5px; height: 108.0px;" /></a>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="6152e246-9e3e-46b4-acf5-f93bd9dd86b9" name="339bb16f-9a55-4dcd-ae00-88a0111102df" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-2" for="6152e246-9e3e-46b4-acf5-f93bd9dd86b9">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id19">
+<div class="code-block-caption"><span class="caption-text">product.xyz</span><a class="headerlink" href="#id19" title="Permalink to this code">#</a></div>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>14
+
+C       0.05083404       0.47756955       0.03067754
+C       0.22099793      -0.53384083       1.12248949
+H       1.00063556       0.99546491      -0.11008883
+H      -0.23550427      -0.01507412      -0.90051555
+O      -0.06214314      -1.70052772       1.01406801
+H       0.61484477      -0.11647527       2.06863484
+C      -3.09105601       0.69502179       1.56213016
+H      -4.07672239       0.25168355       1.53446340
+C      -2.38605593       0.89986170       0.46164886
+H      -2.72406577       0.97143579       2.54163695
+H      -2.77578741       0.61350077      -0.51143129
+C      -1.01585926       1.51412664       0.44531292
+H      -0.76139644       1.92312285       1.42742393
+H      -0.99072867       2.32977240      -0.28155745
+</pre></div>
+</div>
+</div>
+</div>
+<input id="fc2698f8-838d-4e54-beb2-343cac4063f7" name="339bb16f-9a55-4dcd-ae00-88a0111102df" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-2" for="fc2698f8-838d-4e54-beb2-343cac4063f7">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/product2.png"><img alt="../_images/product2.png" src="../_images/product2.png" style="width: 339.0px; height: 130.5px;" /></a>
+</div>
+</div>
+<div class="info admonition">
+<p class="admonition-title">Exercise</p>
+<p>Compute the barrier height for the Claisen rearrangement.
+The expected barrier with GFN2-xTB is around 40 kcal/mol.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The provided input structure might not be optimal, try to prepare the structures to find the optimal reaction path.</p>
+</div>
+</section>
+<section id="transition-metal-reactions">
+<h2>Transition metal reactions<a class="headerlink" href="#transition-metal-reactions" title="Permalink to this headline">#</a></h2>
+<p>Another interesting application of the GSM path finder together with tight binding methods is the investigation of transition metal complexes.<a class="footnote-reference brackets" href="#footcite-dohm2020" id="id2">2</a>
+For this exercises we will investigate several different reactions using the xTB Hamiltonian.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Metallabenzene vs. Rhodium Cp complex<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="663f7df9-e3a6-4f1d-ac89-99e53ef8a18a" name="d072c143-23cb-4ec1-a931-f5a58104872b" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-3" for="663f7df9-e3a6-4f1d-ac89-99e53ef8a18a">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id20">
+<div class="code-block-caption"><span class="caption-text">reactant.xyz</span><a class="headerlink" href="#id20" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">19</span>
+
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.57502200000000</span>       <span class="o">-</span><span class="mf">1.29836600000000</span>        <span class="mf">0.75007100000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.92930100000000</span>       <span class="o">-</span><span class="mf">1.34370800000000</span>        <span class="mf">1.08475100000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.94722600000000</span>       <span class="o">-</span><span class="mf">0.63129900000000</span>        <span class="mf">0.42296400000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.70781300000000</span>        <span class="mf">0.19779700000000</span>       <span class="o">-</span><span class="mf">0.69430700000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.42207200000000</span>        <span class="mf">0.39056700000000</span>       <span class="o">-</span><span class="mf">1.18041300000000</span>
+<span class="n">Rh</span>           <span class="mf">0.31309200000000</span>        <span class="mf">0.02021600000000</span>       <span class="o">-</span><span class="mf">0.38482800000000</span>
+<span class="n">P</span>            <span class="mf">0.49101000000000</span>        <span class="mf">1.97255500000000</span>        <span class="mf">0.73434700000000</span>
+<span class="n">P</span>            <span class="mf">2.42912400000000</span>       <span class="o">-</span><span class="mf">0.98184200000000</span>       <span class="o">-</span><span class="mf">0.02285400000000</span>
+<span class="n">H</span>            <span class="mf">0.08895600000000</span>       <span class="o">-</span><span class="mf">1.89538300000000</span>        <span class="mf">1.40253400000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.23621800000000</span>       <span class="o">-</span><span class="mf">2.01113400000000</span>        <span class="mf">1.90415900000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.98331200000000</span>       <span class="o">-</span><span class="mf">0.77766100000000</span>        <span class="mf">0.75472100000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.31162700000000</span>        <span class="mf">0.89114000000000</span>       <span class="o">-</span><span class="mf">2.16741100000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.57836500000000</span>        <span class="mf">0.59994000000000</span>       <span class="o">-</span><span class="mf">1.23258900000000</span>
+<span class="n">H</span>            <span class="mf">3.11656700000000</span>       <span class="o">-</span><span class="mf">1.46461400000000</span>       <span class="o">-</span><span class="mf">1.17511700000000</span>
+<span class="n">H</span>            <span class="mf">2.46754600000000</span>       <span class="o">-</span><span class="mf">2.20072400000000</span>        <span class="mf">0.71804700000000</span>
+<span class="n">H</span>            <span class="mf">3.59504100000000</span>       <span class="o">-</span><span class="mf">0.41813400000000</span>        <span class="mf">0.58900900000000</span>
+<span class="n">H</span>            <span class="mf">1.29853500000000</span>        <span class="mf">3.13588500000000</span>        <span class="mf">0.50288200000000</span>
+<span class="n">H</span>            <span class="mf">0.86763700000000</span>        <span class="mf">1.80867300000000</span>        <span class="mf">2.09579800000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.72730400000000</span>        <span class="mf">2.67165900000000</span>        <span class="mf">0.95444800000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="a776aff5-1427-4940-b51b-51c9885decc5" name="d072c143-23cb-4ec1-a931-f5a58104872b" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-3" for="a776aff5-1427-4940-b51b-51c9885decc5">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/reactant3.png"><img alt="../_images/reactant3.png" src="../_images/reactant3.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="c8d63696-b698-4e94-8460-1198b55ae282" name="f5037d2d-8313-4f28-8d0f-2ae671c9ddfe" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-3" for="c8d63696-b698-4e94-8460-1198b55ae282">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id21">
+<div class="code-block-caption"><span class="caption-text">product.xyz</span><a class="headerlink" href="#id21" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">19</span>
+
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.52397380000000</span>       <span class="o">-</span><span class="mf">1.77134579000000</span>        <span class="mf">0.13991595000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.10229449000000</span>       <span class="o">-</span><span class="mf">0.93083677000000</span>        <span class="mf">1.14371125000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.37007063000000</span>        <span class="mf">0.32503169000000</span>        <span class="mf">0.51167613000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.10083390000000</span>        <span class="mf">0.20618203000000</span>       <span class="o">-</span><span class="mf">0.91457606000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.57950456000000</span>       <span class="o">-</span><span class="mf">1.08577775000000</span>       <span class="o">-</span><span class="mf">1.14369436000000</span>
+<span class="n">Rh</span>          <span class="o">-</span><span class="mf">0.16948171000000</span>       <span class="o">-</span><span class="mf">0.00343404000000</span>        <span class="mf">0.31231974000000</span>
+<span class="n">P</span>            <span class="mf">0.67247773000000</span>        <span class="mf">1.97112569000000</span>        <span class="mf">0.84740684000000</span>
+<span class="n">P</span>            <span class="mf">1.84120403000000</span>       <span class="o">-</span><span class="mf">0.92575934000000</span>        <span class="mf">0.33533038000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.19640273000000</span>       <span class="o">-</span><span class="mf">2.80295205000000</span>        <span class="mf">0.28642744000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.26609676000000</span>       <span class="o">-</span><span class="mf">1.18272179000000</span>        <span class="mf">2.19134946000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.81145758000000</span>        <span class="mf">1.19884516000000</span>        <span class="mf">0.99603525000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.26680946000000</span>       <span class="o">-</span><span class="mf">1.50034294000000</span>       <span class="o">-</span><span class="mf">2.10296656000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.26852428000000</span>        <span class="mf">0.98204390000000</span>       <span class="o">-</span><span class="mf">1.66275319000000</span>
+<span class="n">H</span>            <span class="mf">2.37748820000000</span>       <span class="o">-</span><span class="mf">1.58164181000000</span>       <span class="o">-</span><span class="mf">0.81947971000000</span>
+<span class="n">H</span>            <span class="mf">2.16348741000000</span>       <span class="o">-</span><span class="mf">1.98758278000000</span>        <span class="mf">1.24088608000000</span>
+<span class="n">H</span>            <span class="mf">2.98962124000000</span>       <span class="o">-</span><span class="mf">0.12596819000000</span>        <span class="mf">0.61348773000000</span>
+<span class="n">H</span>            <span class="mf">2.08150513000000</span>        <span class="mf">2.12495151000000</span>        <span class="mf">1.01136094000000</span>
+<span class="n">H</span>            <span class="mf">0.29753994000000</span>        <span class="mf">2.63754823000000</span>        <span class="mf">2.05846777000000</span>
+<span class="n">H</span>            <span class="mf">0.48137422000000</span>        <span class="mf">3.11820203000000</span>        <span class="mf">0.01130690000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="06a8a70f-19f2-4c5f-9429-382abb5519ce" name="f5037d2d-8313-4f28-8d0f-2ae671c9ddfe" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-3" for="06a8a70f-19f2-4c5f-9429-382abb5519ce">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/product3.png"><img alt="../_images/product3.png" src="../_images/product3.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Rhenium PNP pincer complex<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="25d780a3-a119-4f1d-b128-70208fde3306" name="edc4918e-0982-49b6-a139-d1f2d54bd2d3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-4" for="25d780a3-a119-4f1d-b128-70208fde3306">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id22">
+<div class="code-block-caption"><span class="caption-text">reactant.xyz</span><a class="headerlink" href="#id22" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">88</span>
+
+<span class="n">C</span>            <span class="mf">1.12571700000000</span>       <span class="o">-</span><span class="mf">0.64396800000000</span>        <span class="mf">2.39383100000000</span>
+<span class="n">C</span>            <span class="mf">1.23314900000000</span>       <span class="o">-</span><span class="mf">1.07706400000000</span>        <span class="mf">3.71158300000000</span>
+<span class="n">C</span>            <span class="mf">0.11093500000000</span>       <span class="o">-</span><span class="mf">1.72174600000000</span>        <span class="mf">4.29650200000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.04928000000000</span>       <span class="o">-</span><span class="mf">1.87466900000000</span>        <span class="mf">3.57130100000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.15740100000000</span>       <span class="o">-</span><span class="mf">1.37679100000000</span>        <span class="mf">2.22231300000000</span>
+<span class="n">N</span>           <span class="o">-</span><span class="mf">0.01024800000000</span>       <span class="o">-</span><span class="mf">0.79496000000000</span>        <span class="mf">1.65214300000000</span>
+<span class="n">H</span>            <span class="mf">0.16889100000000</span>       <span class="o">-</span><span class="mf">2.09443400000000</span>        <span class="mf">5.32552600000000</span>
+<span class="n">H</span>            <span class="mf">2.16508300000000</span>       <span class="o">-</span><span class="mf">0.93280200000000</span>        <span class="mf">4.26417700000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.92595000000000</span>       <span class="o">-</span><span class="mf">2.36258200000000</span>        <span class="mf">4.00777600000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.35433100000000</span>       <span class="o">-</span><span class="mf">1.43785500000000</span>        <span class="mf">1.49736100000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.24153400000000</span>       <span class="o">-</span><span class="mf">1.82671200000000</span>        <span class="mf">2.00870000000000</span>
+<span class="n">C</span>            <span class="mf">2.29448900000000</span>        <span class="mf">0.03394500000000</span>        <span class="mf">1.71184800000000</span>
+<span class="n">H</span>            <span class="mf">3.23370900000000</span>       <span class="o">-</span><span class="mf">0.15327300000000</span>        <span class="mf">2.25939300000000</span>
+<span class="n">H</span>            <span class="mf">2.11907300000000</span>        <span class="mf">1.12355700000000</span>        <span class="mf">1.71013900000000</span>
+<span class="n">P</span>           <span class="o">-</span><span class="mf">2.47443800000000</span>       <span class="o">-</span><span class="mf">0.47747800000000</span>        <span class="mf">0.00963300000000</span>
+<span class="n">P</span>            <span class="mf">2.36563000000000</span>       <span class="o">-</span><span class="mf">0.46009200000000</span>       <span class="o">-</span><span class="mf">0.09474200000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.21473000000000</span>        <span class="mf">0.09655100000000</span>       <span class="o">-</span><span class="mf">2.39083300000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.34324300000000</span>        <span class="mf">0.37706500000000</span>       <span class="o">-</span><span class="mf">3.52654900000000</span>
+<span class="n">C</span>            <span class="mf">0.24919500000000</span>        <span class="mf">2.86506200000000</span>        <span class="mf">0.13420900000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.31254600000000</span>        <span class="mf">1.19148700000000</span>        <span class="mf">0.53505400000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">4.79886000000000</span>        <span class="mf">1.07332400000000</span>        <span class="mf">0.91840500000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.55714500000000</span>        <span class="mf">1.62357100000000</span>        <span class="mf">1.81209700000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.14817500000000</span>        <span class="mf">2.24375900000000</span>       <span class="o">-</span><span class="mf">0.57871900000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.44725000000000</span>        <span class="mf">0.86715500000000</span>        <span class="mf">0.05157800000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.95750200000000</span>        <span class="mf">0.28769200000000</span>        <span class="mf">1.67721300000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.13326900000000</span>        <span class="mf">2.03315400000000</span>        <span class="mf">1.35861600000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.46483100000000</span>        <span class="mf">1.58166300000000</span>        <span class="mf">1.69121500000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.84907300000000</span>        <span class="mf">2.65902400000000</span>        <span class="mf">2.07529800000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.81772300000000</span>        <span class="mf">0.96636200000000</span>        <span class="mf">2.65694800000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.42692800000000</span>        <span class="mf">3.24237500000000</span>       <span class="o">-</span><span class="mf">0.19125700000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.11241000000000</span>        <span class="mf">2.28348000000000</span>       <span class="o">-</span><span class="mf">0.94939600000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.80052500000000</span>        <span class="mf">2.03326400000000</span>       <span class="o">-</span><span class="mf">1.43909100000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.70118000000000</span>       <span class="o">-</span><span class="mf">1.37762500000000</span>       <span class="o">-</span><span class="mf">1.16013400000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">4.19161800000000</span>       <span class="o">-</span><span class="mf">0.43051400000000</span>       <span class="o">-</span><span class="mf">2.27181800000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.96949500000000</span>       <span class="o">-</span><span class="mf">2.55192500000000</span>       <span class="o">-</span><span class="mf">1.83044200000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">4.88931700000000</span>       <span class="o">-</span><span class="mf">1.97399200000000</span>       <span class="o">-</span><span class="mf">0.37587000000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.86862400000000</span>        <span class="mf">0.35218800000000</span>       <span class="o">-</span><span class="mf">1.89388800000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.34434700000000</span>        <span class="mf">0.05148000000000</span>       <span class="o">-</span><span class="mf">2.78979200000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.75395500000000</span>       <span class="o">-</span><span class="mf">1.01872500000000</span>       <span class="o">-</span><span class="mf">3.02113300000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.54238300000000</span>       <span class="o">-</span><span class="mf">3.23981100000000</span>       <span class="o">-</span><span class="mf">1.08480900000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.69812400000000</span>       <span class="o">-</span><span class="mf">3.11667500000000</span>       <span class="o">-</span><span class="mf">2.44258900000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.16574500000000</span>       <span class="o">-</span><span class="mf">2.20254200000000</span>       <span class="o">-</span><span class="mf">2.49642500000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.55142600000000</span>       <span class="o">-</span><span class="mf">2.50439500000000</span>       <span class="o">-</span><span class="mf">1.08638300000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.53529900000000</span>       <span class="o">-</span><span class="mf">2.71038600000000</span>        <span class="mf">0.36467600000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.49422200000000</span>       <span class="o">-</span><span class="mf">1.21811000000000</span>        <span class="mf">0.14371500000000</span>
+<span class="n">C</span>            <span class="mf">3.55061500000000</span>        <span class="mf">0.82161100000000</span>       <span class="o">-</span><span class="mf">0.95197200000000</span>
+<span class="n">C</span>            <span class="mf">2.88386400000000</span>        <span class="mf">1.18773800000000</span>       <span class="o">-</span><span class="mf">2.29390700000000</span>
+<span class="n">C</span>            <span class="mf">3.66393000000000</span>        <span class="mf">2.08516100000000</span>       <span class="o">-</span><span class="mf">0.07779100000000</span>
+<span class="n">C</span>            <span class="mf">4.98838600000000</span>        <span class="mf">0.34530900000000</span>       <span class="o">-</span><span class="mf">1.23297600000000</span>
+<span class="n">H</span>            <span class="mf">2.73636900000000</span>        <span class="mf">0.30003000000000</span>       <span class="o">-</span><span class="mf">2.93152500000000</span>
+<span class="n">H</span>            <span class="mf">1.89598900000000</span>        <span class="mf">1.64772800000000</span>       <span class="o">-</span><span class="mf">2.13875200000000</span>
+<span class="n">H</span>            <span class="mf">3.52796200000000</span>        <span class="mf">1.90380400000000</span>       <span class="o">-</span><span class="mf">2.83871500000000</span>
+<span class="n">H</span>            <span class="mf">4.19999500000000</span>        <span class="mf">1.88865700000000</span>        <span class="mf">0.86598600000000</span>
+<span class="n">H</span>            <span class="mf">4.23336100000000</span>        <span class="mf">2.85377400000000</span>       <span class="o">-</span><span class="mf">0.63396900000000</span>
+<span class="n">H</span>            <span class="mf">2.67695000000000</span>        <span class="mf">2.50338800000000</span>        <span class="mf">0.16232300000000</span>
+<span class="n">H</span>            <span class="mf">5.50496700000000</span>        <span class="mf">1.14284000000000</span>       <span class="o">-</span><span class="mf">1.79969200000000</span>
+<span class="n">H</span>            <span class="mf">5.55883800000000</span>        <span class="mf">0.17661300000000</span>       <span class="o">-</span><span class="mf">0.30694900000000</span>
+<span class="n">H</span>            <span class="mf">5.02415700000000</span>       <span class="o">-</span><span class="mf">0.56777300000000</span>       <span class="o">-</span><span class="mf">1.84670900000000</span>
+<span class="n">C</span>            <span class="mf">3.19424400000000</span>       <span class="o">-</span><span class="mf">2.18778100000000</span>       <span class="o">-</span><span class="mf">0.02973800000000</span>
+<span class="n">C</span>            <span class="mf">2.32476900000000</span>       <span class="o">-</span><span class="mf">3.08050500000000</span>        <span class="mf">0.88957300000000</span>
+<span class="n">C</span>            <span class="mf">3.22411600000000</span>       <span class="o">-</span><span class="mf">2.75884900000000</span>       <span class="o">-</span><span class="mf">1.46269900000000</span>
+<span class="n">C</span>            <span class="mf">4.61483700000000</span>       <span class="o">-</span><span class="mf">2.20094900000000</span>        <span class="mf">0.57940600000000</span>
+<span class="n">H</span>            <span class="mf">2.49358000000000</span>       <span class="o">-</span><span class="mf">2.83779400000000</span>        <span class="mf">1.95089600000000</span>
+<span class="n">H</span>            <span class="mf">1.24875400000000</span>       <span class="o">-</span><span class="mf">2.99543800000000</span>        <span class="mf">0.69405900000000</span>
+<span class="n">H</span>            <span class="mf">2.62027300000000</span>       <span class="o">-</span><span class="mf">4.13321500000000</span>        <span class="mf">0.72640100000000</span>
+<span class="n">H</span>            <span class="mf">3.84428900000000</span>       <span class="o">-</span><span class="mf">2.14541200000000</span>       <span class="o">-</span><span class="mf">2.13803300000000</span>
+<span class="n">H</span>            <span class="mf">3.65998000000000</span>       <span class="o">-</span><span class="mf">3.77500600000000</span>       <span class="o">-</span><span class="mf">1.43828500000000</span>
+<span class="n">H</span>            <span class="mf">2.21530600000000</span>       <span class="o">-</span><span class="mf">2.83479000000000</span>       <span class="o">-</span><span class="mf">1.89243100000000</span>
+<span class="n">H</span>            <span class="mf">4.85926500000000</span>       <span class="o">-</span><span class="mf">3.24310100000000</span>        <span class="mf">0.85581500000000</span>
+<span class="n">H</span>            <span class="mf">5.38911100000000</span>       <span class="o">-</span><span class="mf">1.85936100000000</span>       <span class="o">-</span><span class="mf">0.11941500000000</span>
+<span class="n">H</span>            <span class="mf">4.67844500000000</span>       <span class="o">-</span><span class="mf">1.59775500000000</span>        <span class="mf">1.50215500000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.10073700000000</span>       <span class="o">-</span><span class="mf">2.20376900000000</span>       <span class="o">-</span><span class="mf">1.01896800000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.05683900000000</span>       <span class="o">-</span><span class="mf">3.32630100000000</span>       <span class="o">-</span><span class="mf">1.36209900000000</span>
+<span class="n">Re</span>          <span class="o">-</span><span class="mf">0.06366100000000</span>       <span class="o">-</span><span class="mf">0.34534900000000</span>       <span class="o">-</span><span class="mf">0.52165300000000</span>
+<span class="n">N</span>            <span class="mf">0.12443900000000</span>        <span class="mf">1.71628400000000</span>       <span class="o">-</span><span class="mf">0.06484500000000</span>
+<span class="n">C</span>            <span class="mf">0.40317500000000</span>        <span class="mf">4.30831600000000</span>        <span class="mf">0.40017200000000</span>
+<span class="n">C</span>            <span class="mf">1.14159700000000</span>        <span class="mf">4.47520100000000</span>        <span class="mf">1.75397800000000</span>
+<span class="n">C</span>            <span class="mf">1.21692000000000</span>        <span class="mf">4.94754800000000</span>       <span class="o">-</span><span class="mf">0.75483900000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.99550800000000</span>        <span class="mf">4.97061000000000</span>        <span class="mf">0.48067600000000</span>
+<span class="n">H</span>            <span class="mf">0.57118500000000</span>        <span class="mf">4.00405800000000</span>        <span class="mf">2.57133100000000</span>
+<span class="n">H</span>            <span class="mf">2.14658900000000</span>        <span class="mf">4.02398200000000</span>        <span class="mf">1.72004200000000</span>
+<span class="n">H</span>            <span class="mf">1.24924800000000</span>        <span class="mf">5.55119000000000</span>        <span class="mf">1.97365500000000</span>
+<span class="n">H</span>            <span class="mf">0.70084100000000</span>        <span class="mf">4.81011000000000</span>       <span class="o">-</span><span class="mf">1.71926100000000</span>
+<span class="n">H</span>            <span class="mf">1.32052200000000</span>        <span class="mf">6.02923800000000</span>       <span class="o">-</span><span class="mf">0.56257500000000</span>
+<span class="n">H</span>            <span class="mf">2.22286200000000</span>        <span class="mf">4.50602800000000</span>       <span class="o">-</span><span class="mf">0.82940400000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.86489400000000</span>        <span class="mf">6.04481400000000</span>        <span class="mf">0.69763300000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.53741500000000</span>        <span class="mf">4.86649700000000</span>       <span class="o">-</span><span class="mf">0.47219800000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.60184600000000</span>        <span class="mf">4.51814500000000</span>        <span class="mf">1.28050400000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="4c53d1a7-64d0-4978-a6cd-8f8c0657673a" name="edc4918e-0982-49b6-a139-d1f2d54bd2d3" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-4" for="4c53d1a7-64d0-4978-a6cd-8f8c0657673a">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/reactant4.png"><img alt="../_images/reactant4.png" src="../_images/reactant4.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="740ed26a-e112-4c61-a940-937bd32c5d17" name="f559a3bd-dd73-4718-8b22-6d70a0ba69be" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-4" for="740ed26a-e112-4c61-a940-937bd32c5d17">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id23">
+<div class="code-block-caption"><span class="caption-text">product.xyz</span><a class="headerlink" href="#id23" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">88</span>
+
+<span class="n">C</span>            <span class="mf">0.86149444000000</span>       <span class="o">-</span><span class="mf">1.78771344000000</span>        <span class="mf">1.64010558000000</span>
+<span class="n">C</span>            <span class="mf">0.75488202000000</span>       <span class="o">-</span><span class="mf">2.21922912000000</span>        <span class="mf">2.96638390000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.22095966000000</span>       <span class="o">-</span><span class="mf">1.64978763000000</span>        <span class="mf">3.80253364000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.05455545000000</span>       <span class="o">-</span><span class="mf">0.64866456000000</span>        <span class="mf">3.30189976000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.92867634000000</span>       <span class="o">-</span><span class="mf">0.25759739000000</span>        <span class="mf">1.95687359000000</span>
+<span class="n">N</span>            <span class="mf">0.00130184000000</span>       <span class="o">-</span><span class="mf">0.84953088000000</span>        <span class="mf">1.14602570000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.31414785000000</span>       <span class="o">-</span><span class="mf">1.97799915000000</span>        <span class="mf">4.84272958000000</span>
+<span class="n">H</span>            <span class="mf">1.44287095000000</span>       <span class="o">-</span><span class="mf">2.98102981000000</span>        <span class="mf">3.34316028000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.80701362000000</span>       <span class="o">-</span><span class="mf">0.16828577000000</span>        <span class="mf">3.93365044000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.66626744000000</span>        <span class="mf">0.89602488000000</span>        <span class="mf">1.34818749000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.50254236000000</span>        <span class="mf">1.21211295000000</span>        <span class="mf">1.98744432000000</span>
+<span class="n">C</span>            <span class="mf">1.94789664000000</span>       <span class="o">-</span><span class="mf">2.27044797000000</span>        <span class="mf">0.70920263000000</span>
+<span class="n">H</span>            <span class="mf">1.55101500000000</span>       <span class="o">-</span><span class="mf">3.07014117000000</span>        <span class="mf">0.05469893000000</span>
+<span class="n">H</span>            <span class="mf">2.79346968000000</span>       <span class="o">-</span><span class="mf">2.68778637000000</span>        <span class="mf">1.28236901000000</span>
+<span class="n">P</span>           <span class="o">-</span><span class="mf">2.13609273000000</span>        <span class="mf">0.47893014000000</span>       <span class="o">-</span><span class="mf">0.45596110000000</span>
+<span class="n">P</span>            <span class="mf">2.41839474000000</span>       <span class="o">-</span><span class="mf">0.89567018000000</span>       <span class="o">-</span><span class="mf">0.50053969000000</span>
+<span class="n">C</span>            <span class="mf">0.49793183000000</span>        <span class="mf">0.66903180000000</span>       <span class="o">-</span><span class="mf">2.64300347000000</span>
+<span class="n">O</span>            <span class="mf">0.74846690000000</span>        <span class="mf">1.13406599000000</span>       <span class="o">-</span><span class="mf">3.69421715000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.51934595000000</span>        <span class="mf">1.97628318000000</span>        <span class="mf">1.14252530000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.91815774000000</span>        <span class="mf">2.08694289000000</span>       <span class="o">-</span><span class="mf">1.17964384000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.64734969000000</span>        <span class="mf">2.89430282000000</span>       <span class="o">-</span><span class="mf">0.08970012000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.79493535000000</span>        <span class="mf">2.94550044000000</span>       <span class="o">-</span><span class="mf">1.80368738000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.89663669000000</span>        <span class="mf">1.75784093000000</span>       <span class="o">-</span><span class="mf">2.32610709000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.43933710000000</span>        <span class="mf">2.31582449000000</span>        <span class="mf">0.41177557000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.94389839000000</span>        <span class="mf">3.25484094000000</span>        <span class="mf">0.67495465000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.11849809000000</span>        <span class="mf">3.78202847000000</span>       <span class="o">-</span><span class="mf">0.55190962000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.37598705000000</span>        <span class="mf">2.45379423000000</span>       <span class="o">-</span><span class="mf">2.69449384000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.23585873000000</span>        <span class="mf">3.91020324000000</span>       <span class="o">-</span><span class="mf">2.11870890000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.96735981000000</span>        <span class="mf">3.14065205000000</span>       <span class="o">-</span><span class="mf">1.10956152000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.19712746000000</span>        <span class="mf">2.71130095000000</span>       <span class="o">-</span><span class="mf">2.79853091000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.41604669000000</span>        <span class="mf">1.14002839000000</span>       <span class="o">-</span><span class="mf">3.10283668000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.81469005000000</span>        <span class="mf">1.25550791000000</span>       <span class="o">-</span><span class="mf">1.98377167000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.48995181000000</span>       <span class="o">-</span><span class="mf">0.87303837000000</span>       <span class="o">-</span><span class="mf">0.31854511000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.79796745000000</span>       <span class="o">-</span><span class="mf">1.44508072000000</span>       <span class="o">-</span><span class="mf">1.72180843000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.93886858000000</span>       <span class="o">-</span><span class="mf">2.03904410000000</span>        <span class="mf">0.53388402000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">4.77671142000000</span>       <span class="o">-</span><span class="mf">0.35961522000000</span>        <span class="mf">0.35729730000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.28641726000000</span>       <span class="o">-</span><span class="mf">0.71900713000000</span>       <span class="o">-</span><span class="mf">2.38473099000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.88349932000000</span>       <span class="o">-</span><span class="mf">1.81392757000000</span>       <span class="o">-</span><span class="mf">2.21041988000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.48484815000000</span>       <span class="o">-</span><span class="mf">2.30392753000000</span>       <span class="o">-</span><span class="mf">1.60251513000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.84659891000000</span>       <span class="o">-</span><span class="mf">1.76989151000000</span>        <span class="mf">1.59707203000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.65224036000000</span>       <span class="o">-</span><span class="mf">2.88067274000000</span>        <span class="mf">0.46159422000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.96231420000000</span>       <span class="o">-</span><span class="mf">2.39128464000000</span>        <span class="mf">0.17006063000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.47404456000000</span>       <span class="o">-</span><span class="mf">1.20797269000000</span>        <span class="mf">0.49089836000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.57144771000000</span>        <span class="mf">0.06162204000000</span>        <span class="mf">1.35726321000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">5.29765645000000</span>        <span class="mf">0.40348968000000</span>       <span class="o">-</span><span class="mf">0.24200125000000</span>
+<span class="n">C</span>            <span class="mf">3.59944579000000</span>        <span class="mf">0.25164222000000</span>        <span class="mf">0.47607065000000</span>
+<span class="n">C</span>            <span class="mf">3.58718371000000</span>        <span class="mf">1.61636935000000</span>       <span class="o">-</span><span class="mf">0.25012236000000</span>
+<span class="n">C</span>            <span class="mf">2.96830771000000</span>        <span class="mf">0.43988887000000</span>        <span class="mf">1.86924432000000</span>
+<span class="n">C</span>            <span class="mf">5.03872775000000</span>       <span class="o">-</span><span class="mf">0.25474999000000</span>        <span class="mf">0.67563828000000</span>
+<span class="n">H</span>            <span class="mf">4.00379416000000</span>        <span class="mf">1.55323068000000</span>       <span class="o">-</span><span class="mf">1.26791119000000</span>
+<span class="n">H</span>            <span class="mf">2.55402709000000</span>        <span class="mf">2.00319380000000</span>       <span class="o">-</span><span class="mf">0.30329275000000</span>
+<span class="n">H</span>            <span class="mf">4.20614663000000</span>        <span class="mf">2.33155552000000</span>        <span class="mf">0.32495740000000</span>
+<span class="n">H</span>            <span class="mf">3.04100438000000</span>       <span class="o">-</span><span class="mf">0.47246148000000</span>        <span class="mf">2.48504790000000</span>
+<span class="n">H</span>            <span class="mf">3.51117714000000</span>        <span class="mf">1.24461479000000</span>        <span class="mf">2.39827932000000</span>
+<span class="n">H</span>            <span class="mf">1.91439376000000</span>        <span class="mf">0.74142145000000</span>        <span class="mf">1.78705832000000</span>
+<span class="n">H</span>            <span class="mf">5.57584579000000</span>        <span class="mf">0.47099678000000</span>        <span class="mf">1.31524502000000</span>
+<span class="n">H</span>            <span class="mf">5.06685716000000</span>       <span class="o">-</span><span class="mf">1.23073383000000</span>        <span class="mf">1.19140386000000</span>
+<span class="n">H</span>            <span class="mf">5.60080441000000</span>       <span class="o">-</span><span class="mf">0.33775522000000</span>       <span class="o">-</span><span class="mf">0.26783006000000</span>
+<span class="n">C</span>            <span class="mf">3.41489389000000</span>       <span class="o">-</span><span class="mf">1.80539212000000</span>       <span class="o">-</span><span class="mf">1.85917774000000</span>
+<span class="n">C</span>            <span class="mf">2.43574530000000</span>       <span class="o">-</span><span class="mf">2.55734763000000</span>       <span class="o">-</span><span class="mf">2.78065322000000</span>
+<span class="n">C</span>            <span class="mf">4.14151619000000</span>       <span class="o">-</span><span class="mf">0.74748112000000</span>       <span class="o">-</span><span class="mf">2.71677803000000</span>
+<span class="n">C</span>            <span class="mf">4.40792441000000</span>       <span class="o">-</span><span class="mf">2.83769874000000</span>       <span class="o">-</span><span class="mf">1.28526836000000</span>
+<span class="n">H</span>            <span class="mf">1.84786755000000</span>       <span class="o">-</span><span class="mf">3.31835121000000</span>       <span class="o">-</span><span class="mf">2.24287101000000</span>
+<span class="n">H</span>            <span class="mf">1.73548180000000</span>       <span class="o">-</span><span class="mf">1.86756021000000</span>       <span class="o">-</span><span class="mf">3.27466575000000</span>
+<span class="n">H</span>            <span class="mf">3.02536524000000</span>       <span class="o">-</span><span class="mf">3.07681208000000</span>       <span class="o">-</span><span class="mf">3.55933894000000</span>
+<span class="n">H</span>            <span class="mf">4.94358605000000</span>       <span class="o">-</span><span class="mf">0.23065258000000</span>       <span class="o">-</span><span class="mf">2.16684333000000</span>
+<span class="n">H</span>            <span class="mf">4.60278475000000</span>       <span class="o">-</span><span class="mf">1.25058200000000</span>       <span class="o">-</span><span class="mf">3.58673381000000</span>
+<span class="n">H</span>            <span class="mf">3.43292104000000</span>        <span class="mf">0.00674948000000</span>       <span class="o">-</span><span class="mf">3.09926855000000</span>
+<span class="n">H</span>            <span class="mf">4.94367264000000</span>       <span class="o">-</span><span class="mf">3.31779637000000</span>       <span class="o">-</span><span class="mf">2.12551231000000</span>
+<span class="n">H</span>            <span class="mf">5.16103559000000</span>       <span class="o">-</span><span class="mf">2.39468254000000</span>       <span class="o">-</span><span class="mf">0.61976444000000</span>
+<span class="n">H</span>            <span class="mf">3.88251072000000</span>       <span class="o">-</span><span class="mf">3.63745425000000</span>       <span class="o">-</span><span class="mf">0.73543224000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.29510138000000</span>       <span class="o">-</span><span class="mf">1.80538246000000</span>       <span class="o">-</span><span class="mf">1.69345890000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.68503822000000</span>       <span class="o">-</span><span class="mf">2.85215138000000</span>       <span class="o">-</span><span class="mf">2.08230874000000</span>
+<span class="n">Re</span>           <span class="mf">0.17059664000000</span>       <span class="o">-</span><span class="mf">0.11132819000000</span>       <span class="o">-</span><span class="mf">0.90929276000000</span>
+<span class="n">N</span>            <span class="mf">0.34045026000000</span>        <span class="mf">1.74507402000000</span>        <span class="mf">0.23439942000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.41939020000000</span>        <span class="mf">3.18886841000000</span>        <span class="mf">2.11875167000000</span>
+<span class="n">C</span>            <span class="mf">0.90848217000000</span>        <span class="mf">3.06052644000000</span>        <span class="mf">2.89879991000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.36629646000000</span>        <span class="mf">4.48904036000000</span>        <span class="mf">1.28622862000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.57166982000000</span>        <span class="mf">3.26588979000000</span>        <span class="mf">3.13880383000000</span>
+<span class="n">H</span>            <span class="mf">0.93465436000000</span>        <span class="mf">2.12833861000000</span>        <span class="mf">3.49024003000000</span>
+<span class="n">H</span>            <span class="mf">1.75604884000000</span>        <span class="mf">3.05043816000000</span>        <span class="mf">2.19658630000000</span>
+<span class="n">H</span>            <span class="mf">1.02823907000000</span>        <span class="mf">3.91378980000000</span>        <span class="mf">3.59174581000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.32186630000000</span>        <span class="mf">4.68260456000000</span>        <span class="mf">0.76990072000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.15028200000000</span>        <span class="mf">5.35364666000000</span>        <span class="mf">1.94008388000000</span>
+<span class="n">H</span>            <span class="mf">0.42698569000000</span>        <span class="mf">4.40715826000000</span>        <span class="mf">0.52524233000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.43238026000000</span>        <span class="mf">4.14829339000000</span>        <span class="mf">3.78862083000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.55839372000000</span>        <span class="mf">3.36655257000000</span>        <span class="mf">2.65439611000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.59615894000000</span>        <span class="mf">2.37606467000000</span>        <span class="mf">3.79246860000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="caf2c10a-b642-4ee4-b2fa-dec93e9a9d31" name="f559a3bd-dd73-4718-8b22-6d70a0ba69be" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-4" for="caf2c10a-b642-4ee4-b2fa-dec93e9a9d31">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/product4.png"><img alt="../_images/product4.png" src="../_images/product4.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Ruthenium pincer complex<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="sd-tab-set docutils">
+<input checked="checked" id="fd04f7b8-5a05-43ed-827d-186b1b2182e1" name="7c1f8422-42cf-4a6f-b41e-a5a5476da9aa" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-5" for="fd04f7b8-5a05-43ed-827d-186b1b2182e1">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id24">
+<div class="code-block-caption"><span class="caption-text">reactant.xyz</span><a class="headerlink" href="#id24" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">39</span>
+
+<span class="n">C</span>            <span class="mf">2.14156830195641</span>       <span class="o">-</span><span class="mf">1.29348060521416</span>       <span class="o">-</span><span class="mf">0.95757067905303</span>
+<span class="n">C</span>            <span class="mf">2.24700760711555</span>        <span class="mf">0.14233347609941</span>       <span class="o">-</span><span class="mf">0.50586093650040</span>
+<span class="n">N</span>            <span class="mf">1.04338872702218</span>        <span class="mf">0.68595310415767</span>       <span class="o">-</span><span class="mf">0.22185519901871</span>
+<span class="n">C</span>            <span class="mf">0.89757296527426</span>        <span class="mf">2.00324864849573</span>        <span class="mf">0.19432967469119</span>
+<span class="n">C</span>            <span class="mf">2.09375233592471</span>        <span class="mf">2.78900864784732</span>        <span class="mf">0.28220632952698</span>
+<span class="n">C</span>            <span class="mf">3.32492176488136</span>        <span class="mf">2.22699525794963</span>       <span class="o">-</span><span class="mf">0.01469668283423</span>
+<span class="n">C</span>            <span class="mf">3.42986421449946</span>        <span class="mf">0.87038576546755</span>       <span class="o">-</span><span class="mf">0.41268411738744</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.41468565587209</span>        <span class="mf">2.42184591804414</span>        <span class="mf">0.53889610156852</span>
+<span class="n">P</span>           <span class="o">-</span><span class="mf">1.72895705533737</span>        <span class="mf">1.36989135386445</span>       <span class="o">-</span><span class="mf">0.08676456007610</span>
+<span class="n">H</span>            <span class="mf">4.39410438883000</span>        <span class="mf">0.41090473720723</span>       <span class="o">-</span><span class="mf">0.64414007610268</span>
+<span class="n">H</span>            <span class="mf">2.01554759488035</span>        <span class="mf">3.83423341442195</span>        <span class="mf">0.59443444806665</span>
+<span class="n">H</span>            <span class="mf">4.23044786169423</span>        <span class="mf">2.83957470692107</span>        <span class="mf">0.06107428757122</span>
+<span class="n">C</span>            <span class="mf">0.77151950517073</span>       <span class="o">-</span><span class="mf">3.30565077713550</span>       <span class="o">-</span><span class="mf">0.81971604154894</span>
+<span class="n">C</span>            <span class="mf">1.62520412919640</span>       <span class="o">-</span><span class="mf">2.28352760047943</span>        <span class="mf">1.21254788356364</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.58620193520706</span>        <span class="mf">3.47916027797597</span>        <span class="mf">0.77793436121436</span>
+<span class="n">H</span>            <span class="mf">3.11828334116379</span>       <span class="o">-</span><span class="mf">1.81373057062002</span>       <span class="o">-</span><span class="mf">0.90082176198738</span>
+<span class="n">H</span>            <span class="mf">1.79253913157996</span>       <span class="o">-</span><span class="mf">1.31229332047328</span>       <span class="o">-</span><span class="mf">2.00470932781361</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.37448438095365</span>        <span class="mf">2.03978448537501</span>       <span class="o">-</span><span class="mf">1.68896016087244</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.17725535922990</span>        <span class="mf">1.64701934153411</span>        <span class="mf">1.02959756453653</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.20040386198274</span>        <span class="mf">1.40394670099854</span>       <span class="o">-</span><span class="mf">2.05196954383466</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.72571782167635</span>        <span class="mf">3.08009680871532</span>       <span class="o">-</span><span class="mf">1.57067572427195</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.55242767030124</span>        <span class="mf">2.00864301819123</span>       <span class="o">-</span><span class="mf">2.42160586033589</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.04100880702443</span>        <span class="mf">1.06397521687219</span>        <span class="mf">0.66870638844135</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.92580808692839</span>        <span class="mf">1.31399209358725</span>        <span class="mf">2.05001475980488</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.44703280439002</span>        <span class="mf">2.71753432492179</span>        <span class="mf">1.06366288079101</span>
+<span class="n">H</span>            <span class="mf">2.52711447353895</span>       <span class="o">-</span><span class="mf">2.92872046225583</span>        <span class="mf">1.17221107603511</span>
+<span class="n">H</span>            <span class="mf">1.87157642421579</span>       <span class="o">-</span><span class="mf">1.32632983838760</span>        <span class="mf">1.69366410813994</span>
+<span class="n">H</span>            <span class="mf">0.84081610841256</span>       <span class="o">-</span><span class="mf">2.78264715239870</span>        <span class="mf">1.80103975628715</span>
+<span class="n">H</span>            <span class="mf">1.67094180241586</span>       <span class="o">-</span><span class="mf">3.94887822037930</span>       <span class="o">-</span><span class="mf">0.91756154340895</span>
+<span class="n">H</span>            <span class="mf">0.01177103493782</span>       <span class="o">-</span><span class="mf">3.82890951607527</span>       <span class="o">-</span><span class="mf">0.22062069509309</span>
+<span class="n">H</span>            <span class="mf">0.35360313945659</span>       <span class="o">-</span><span class="mf">3.08938725264281</span>       <span class="o">-</span><span class="mf">1.81348348684775</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.08990509620891</span>       <span class="o">-</span><span class="mf">1.70656155341050</span>        <span class="mf">0.00098802708439</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">3.05088180975026</span>       <span class="o">-</span><span class="mf">2.38495566492066</span>        <span class="mf">0.02691652376577</span>
+<span class="n">Ru</span>          <span class="o">-</span><span class="mf">0.60689736425803</span>       <span class="o">-</span><span class="mf">0.60601946718620</span>       <span class="o">-</span><span class="mf">0.09131251822389</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.72348988353592</span>       <span class="o">-</span><span class="mf">0.75718225033382</span>       <span class="o">-</span><span class="mf">1.67431224162697</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.19928336645442</span>       <span class="o">-</span><span class="mf">0.04572652320111</span>        <span class="mf">2.16623659808879</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.02943439234246</span>       <span class="o">-</span><span class="mf">0.20830869311707</span>        <span class="mf">2.64988349495872</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.22935269685405</span>        <span class="mf">0.94192520512638</span>        <span class="mf">1.95999630422654</span>
+<span class="n">N</span>            <span class="mf">1.10760319614222</span>       <span class="o">-</span><span class="mf">2.02587303554773</span>       <span class="o">-</span><span class="mf">0.15370941152654</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="13ed20aa-f6e2-4027-9883-2ed08158f8a2" name="7c1f8422-42cf-4a6f-b41e-a5a5476da9aa" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-5" for="13ed20aa-f6e2-4027-9883-2ed08158f8a2">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/reactant5.png"><img alt="../_images/reactant5.png" src="../_images/reactant5.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="824f02bb-f856-4b40-abbb-8317ccdb83da" name="08685d2d-67c8-4093-ba43-a8e18219f308" type="radio">
+</input><label class="sd-tab-label" data-sync-id="xyz-5" for="824f02bb-f856-4b40-abbb-8317ccdb83da">
+coordinates</label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id25">
+<div class="code-block-caption"><span class="caption-text">product.xyz</span><a class="headerlink" href="#id25" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">39</span>
+
+<span class="n">C</span>            <span class="mf">2.22934206000000</span>       <span class="o">-</span><span class="mf">1.26375759000000</span>        <span class="mf">0.68371909000000</span>
+<span class="n">C</span>            <span class="mf">2.28158720000000</span>        <span class="mf">0.17526736000000</span>        <span class="mf">0.24446482000000</span>
+<span class="n">N</span>            <span class="mf">1.07751903000000</span>        <span class="mf">0.68845263000000</span>       <span class="o">-</span><span class="mf">0.11138669000000</span>
+<span class="n">C</span>            <span class="mf">0.92766202000000</span>        <span class="mf">2.00760156000000</span>       <span class="o">-</span><span class="mf">0.39400028000000</span>
+<span class="n">C</span>            <span class="mf">2.03095097000000</span>        <span class="mf">2.87112410000000</span>       <span class="o">-</span><span class="mf">0.32952961000000</span>
+<span class="n">C</span>            <span class="mf">3.29042609000000</span>        <span class="mf">2.35206951000000</span>        <span class="mf">0.00062251000000</span>
+<span class="n">C</span>            <span class="mf">3.42155580000000</span>        <span class="mf">0.98597375000000</span>        <span class="mf">0.28562791000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">0.46179965000000</span>        <span class="mf">2.43581733000000</span>       <span class="o">-</span><span class="mf">0.79321757000000</span>
+<span class="n">P</span>           <span class="o">-</span><span class="mf">1.72276986000000</span>        <span class="mf">1.20829520000000</span>       <span class="o">-</span><span class="mf">0.11988634000000</span>
+<span class="n">H</span>            <span class="mf">4.38916475000000</span>        <span class="mf">0.55422979000000</span>        <span class="mf">0.55754772000000</span>
+<span class="n">H</span>            <span class="mf">1.90090963000000</span>        <span class="mf">3.93478693000000</span>       <span class="o">-</span><span class="mf">0.54860748000000</span>
+<span class="n">H</span>            <span class="mf">4.16423220000000</span>        <span class="mf">3.01037348000000</span>        <span class="mf">0.03926767000000</span>
+<span class="n">C</span>            <span class="mf">1.72162376000000</span>       <span class="o">-</span><span class="mf">2.32599418000000</span>       <span class="o">-</span><span class="mf">1.46706228000000</span>
+<span class="n">C</span>            <span class="mf">0.89515918000000</span>       <span class="o">-</span><span class="mf">3.28121792000000</span>        <span class="mf">0.62809508000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.55298064000000</span>        <span class="mf">2.35667091000000</span>       <span class="o">-</span><span class="mf">1.89411302000000</span>
+<span class="n">H</span>            <span class="mf">1.82326294000000</span>       <span class="o">-</span><span class="mf">1.25460762000000</span>        <span class="mf">1.71485737000000</span>
+<span class="n">H</span>            <span class="mf">3.22678123000000</span>       <span class="o">-</span><span class="mf">1.74481329000000</span>        <span class="mf">0.65077788000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">3.19417300000000</span>        <span class="mf">1.49854417000000</span>       <span class="o">-</span><span class="mf">1.18870498000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">2.21535271000000</span>        <span class="mf">1.92624960000000</span>        <span class="mf">1.50994332000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">4.01488282000000</span>        <span class="mf">0.85462369000000</span>       <span class="o">-</span><span class="mf">0.83033218000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.52108836000000</span>        <span class="mf">2.55308519000000</span>       <span class="o">-</span><span class="mf">1.16892242000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.94183227000000</span>        <span class="mf">1.19603757000000</span>       <span class="o">-</span><span class="mf">2.21784989000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">3.08067893000000</span>        <span class="mf">1.35789888000000</span>        <span class="mf">1.89223815000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">1.37026601000000</span>        <span class="mf">1.76188687000000</span>        <span class="mf">2.19905160000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.47811893000000</span>        <span class="mf">2.99699945000000</span>        <span class="mf">1.44678261000000</span>
+<span class="n">H</span>            <span class="mf">1.80132425000000</span>       <span class="o">-</span><span class="mf">3.90283762000000</span>        <span class="mf">0.78450306000000</span>
+<span class="n">H</span>            <span class="mf">0.46084788000000</span>       <span class="o">-</span><span class="mf">2.97040985000000</span>        <span class="mf">1.59137142000000</span>
+<span class="n">H</span>            <span class="mf">0.15511648000000</span>       <span class="o">-</span><span class="mf">3.85113240000000</span>        <span class="mf">0.04676705000000</span>
+<span class="n">H</span>            <span class="mf">2.62583777000000</span>       <span class="o">-</span><span class="mf">2.96997336000000</span>       <span class="o">-</span><span class="mf">1.42745344000000</span>
+<span class="n">H</span>            <span class="mf">0.92624614000000</span>       <span class="o">-</span><span class="mf">2.82866640000000</span>       <span class="o">-</span><span class="mf">2.03557756000000</span>
+<span class="n">H</span>            <span class="mf">1.96286250000000</span>       <span class="o">-</span><span class="mf">1.37761512000000</span>       <span class="o">-</span><span class="mf">1.97011177000000</span>
+<span class="n">C</span>           <span class="o">-</span><span class="mf">1.96679093000000</span>       <span class="o">-</span><span class="mf">1.81207395000000</span>       <span class="o">-</span><span class="mf">0.21667655000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">2.90250672000000</span>       <span class="o">-</span><span class="mf">2.51561928000000</span>       <span class="o">-</span><span class="mf">0.31712478000000</span>
+<span class="n">Ru</span>          <span class="o">-</span><span class="mf">0.52761306000000</span>       <span class="o">-</span><span class="mf">0.66165773000000</span>       <span class="o">-</span><span class="mf">0.10993849000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.54751212000000</span>       <span class="o">-</span><span class="mf">0.60916247000000</span>       <span class="o">-</span><span class="mf">1.75694704000000</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">0.14464432000000</span>       <span class="o">-</span><span class="mf">0.69054709000000</span>        <span class="mf">1.99512044000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.95297155000000</span>       <span class="o">-</span><span class="mf">0.99660875000000</span>        <span class="mf">2.44148419000000</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">0.66328457000000</span>        <span class="mf">3.48492011000000</span>       <span class="o">-</span><span class="mf">0.51170604000000</span>
+<span class="n">N</span>            <span class="mf">1.22496156000000</span>       <span class="o">-</span><span class="mf">2.03695347000000</span>       <span class="o">-</span><span class="mf">0.10513049000000</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="992fa68f-755b-475d-b95a-5148808fa514" name="08685d2d-67c8-4093-ba43-a8e18219f308" type="radio">
+</input><label class="sd-tab-label" data-sync-id="png-5" for="992fa68f-755b-475d-b95a-5148808fa514">
+image</label><div class="sd-tab-content docutils">
+<a class="reference internal image-reference" href="../_images/product5.png"><img alt="../_images/product5.png" src="../_images/product5.png" style="width: 502.0px; height: 428.0px;" /></a>
+</div>
+</div>
+</div>
+</details><div class="info admonition">
+<p class="admonition-title">Exercise</p>
+<p>Find the reaction paths for the three transition metal reactions with GFN2-xTB.
+Compare the computed barrier heights and reaction energies with the reference values
+computed by localized coupled cluster or double hybrid density functionals given below
+(in kcal/mol).</p>
+<table class="table">
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 35%" />
+<col style="width: 38%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Metal</p></th>
+<th class="head"><p>Barrier</p></th>
+<th class="head"><p>Reaction</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ru</p></td>
+<td><p>20.27</p></td>
+<td><p>–56.96</p></td>
+</tr>
+<tr class="row-odd"><td><p>Re</p></td>
+<td><p>2.66</p></td>
+<td><p>–9.35</p></td>
+</tr>
+<tr class="row-even"><td><p>Rh</p></td>
+<td><p>10.35</p></td>
+<td><p>–3.32</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">You learned…</p>
+<ul class="simple">
+<li><p>to prepare starting structures for a reaction path search</p></li>
+<li><p>perform a reaction path search with the growing string methods</p></li>
+<li><p>compare reaction paths from different semiempirical methods</p></li>
+</ul>
+</div>
+</section>
+<section id="literature">
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id3">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-zimmerman2013"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Paul M Zimmerman. Growing string method with interpolation and optimization in internal coordinates: method and examples. <em>J. Chem. Phys.</em>, 138(18):184102, 2013. <a class="reference external" href="https://doi.org/10.1063/1.4804162">doi:10.1063/1.4804162</a>.</p>
+</dd>
+<dt class="label" id="footcite-dohm2020"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Sebastian Dohm, Markus Bursch, Andreas Hansen, and Stefan Grimme. Semiautomated transition state localization for organometallic complexes with semiempirical quantum chemical methods. <em>J. Chem. Theory Comput.</em>, 16(3):2002–2012, 2020. <a class="reference external" href="https://doi.org/10.1021/acs.jctc.9b01266">doi:10.1021/acs.jctc.9b01266</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="solvation.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Solvation effects</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="../reference/index.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">External references</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Sebastian Ehlert<br/>
+  
+      &copy; Copyright 2022 Sebastian Ehlert.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>

@@ -1,0 +1,864 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Extended tight binding &#8212; Daresbury DFTB+ School</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <link rel="shortcut icon" href="../_static/dftbschool-logo.svg"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Conformational ensembles" href="conformers.html" />
+    <link rel="prev" title="Tutorial" href="index.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../_static/dftbschool-logo.svg" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="index.html">
+   Tutorial
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Extended tight binding
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="conformers.html">
+     Conformational ensembles
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="solvation.html">
+     Solvation effects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="reaction.html">
+     Reaction path search
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../reference/index.html">
+   External references
+  </a>
+  <input checked class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://tblite.readthedocs.io/en/latest/spec/index.html">
+     xTB Hamiltonian
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://xtb-docs.readthedocs.io/en/latest/crest.html">
+     CREST documentation
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            
+<div class="sd-fs-4">
+<!--
+<a href="https://fortran-lang.discourse.group/" target="_blank">
+    <i class="fab fa-discourse"></i>
+</a>
+<a href="https://twitter.com/fortranlang" target="_blank">
+    <i class="fab fa-twitter"></i>
+</a>
+<a href="https://github.com/fortran-lang" target="_blank">
+    <i class="fab fa-github"></i>
+</a>
+-->
+</div>
+
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/awvwgk/daresbury"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/awvwgk/daresbury/edit/main/pages/tutorial/xtb.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculation-setup">
+   Calculation setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-parameter-files">
+   Using parameter files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Extended tight binding</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#calculation-setup">
+   Calculation setup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#using-parameter-files">
+   Using parameter files
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#summary">
+   Summary
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#literature">
+   Literature
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="extended-tight-binding">
+<h1>Extended tight binding<a class="headerlink" href="#extended-tight-binding" title="Permalink to this headline">#</a></h1>
+<p>This chapter will investigate some basic usage of the extended tight binding (xTB) methods.<a class="footnote-reference brackets" href="#footcite-bannwarth2020" id="id1">1</a></p>
+<section id="calculation-setup">
+<h2>Calculation setup<a class="headerlink" href="#calculation-setup" title="Permalink to this headline">#</a></h2>
+<p>To make use of the extended tight binding Hamiltonian, the <code class="docutils literal notranslate"><span class="pre">xTB</span></code> group is set for the <code class="docutils literal notranslate"><span class="pre">Hamiltonian</span></code> group in the <code class="docutils literal notranslate"><span class="pre">dftb_in.hsd</span></code>.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="dc444b63-fd7e-4c94-af90-f2206c2a102f" name="23871fe1-fdff-4f6a-bb60-a35ac97f4078" type="radio">
+</input><label class="sd-tab-label" for="dc444b63-fd7e-4c94-af90-f2206c2a102f">
+GFN1-xTB<a class="footnote-reference brackets" href="#footcite-grimme2017-1" id="id2">2</a></label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id7">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id7" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+<span class="hll">  <span class="nv">Method</span> <span class="o">=</span> <span class="s2">&quot;GFN1-xTB&quot;</span>
+</span><span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No <span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="296e3db6-041c-43e1-a230-0568e676f5e4" name="23871fe1-fdff-4f6a-bb60-a35ac97f4078" type="radio">
+</input><label class="sd-tab-label" for="296e3db6-041c-43e1-a230-0568e676f5e4">
+GFN2-xTB<a class="footnote-reference brackets" href="#footcite-bannwarth2019" id="id3">3</a></label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id8">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id8" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+<span class="hll">  <span class="nv">Method</span> <span class="o">=</span> <span class="s2">&quot;GFN2-xTB&quot;</span>
+</span><span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No <span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<input id="482aae34-9a5a-4a33-b70b-48c044933ff4" name="23871fe1-fdff-4f6a-bb60-a35ac97f4078" type="radio">
+</input><label class="sd-tab-label" for="482aae34-9a5a-4a33-b70b-48c044933ff4">
+IPEA1-xTB<a class="footnote-reference brackets" href="#footcite-asgeirsson2017" id="id4">4</a></label><div class="sd-tab-content docutils">
+<div class="literal-block-wrapper docutils container" id="id9">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id9" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+<span class="hll">  <span class="nv">Method</span> <span class="o">=</span> <span class="s2">&quot;IPEA1-xTB&quot;</span>
+</span><span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No <span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>An example system with several different elements can be this molecule of the mindless benchmark set from the GMTKN55:</p>
+<div class="literal-block-wrapper docutils container" id="id10">
+<div class="code-block-caption"><span class="caption-text">struc.xyz</span><a class="headerlink" href="#id10" title="Permalink to this code">#</a></div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">16</span>
+
+<span class="n">B</span>           <span class="o">-</span><span class="mf">1.13576381337600</span>       <span class="o">-</span><span class="mf">0.98202961096942</span>       <span class="o">-</span><span class="mf">2.56980581042078</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.89480383887347</span>       <span class="o">-</span><span class="mf">1.74750462627723</span>       <span class="o">-</span><span class="mf">3.07466766480399</span>
+<span class="n">H</span>            <span class="mf">0.07938441849184</span>       <span class="o">-</span><span class="mf">0.62480818078894</span>        <span class="mf">1.84272518265394</span>
+<span class="n">O</span>           <span class="o">-</span><span class="mf">1.96523775652147</span>       <span class="o">-</span><span class="mf">1.74460816960886</span>       <span class="o">-</span><span class="mf">3.35123084552876</span>
+<span class="n">H</span>            <span class="mf">0.01912967435543</span>       <span class="o">-</span><span class="mf">0.95917085328398</span>       <span class="o">-</span><span class="mf">2.88492767970168</span>
+<span class="n">H</span>           <span class="o">-</span><span class="mf">2.52429913698613</span>       <span class="o">-</span><span class="mf">0.24161634723993</span>       <span class="o">-</span><span class="mf">1.14793605775399</span>
+<span class="n">N</span>           <span class="o">-</span><span class="mf">1.54407294273763</span>       <span class="o">-</span><span class="mf">0.22352221164400</span>       <span class="o">-</span><span class="mf">1.42361819339963</span>
+<span class="n">F</span>           <span class="o">-</span><span class="mf">1.11622101351633</span>        <span class="mf">1.53510256289205</span>        <span class="mf">0.89960198176580</span>
+<span class="n">P</span>            <span class="mf">1.77611523371161</span>        <span class="mf">1.47255734021745</span>       <span class="o">-</span><span class="mf">0.33769639710754</span>
+<span class="n">C</span>            <span class="mf">1.08471699983285</span>       <span class="o">-</span><span class="mf">0.31339718179699</span>        <span class="mf">2.16471012248487</span>
+<span class="n">B</span>            <span class="mf">2.15253245085189</span>        <span class="mf">0.42393522953050</span>        <span class="mf">1.30750032241123</span>
+<span class="n">Al</span>           <span class="mf">0.58550528991043</span>        <span class="mf">2.38969712908435</span>        <span class="mf">1.55714018268996</span>
+<span class="n">O</span>            <span class="mf">1.08447068317195</span>        <span class="mf">1.05336164655914</span>        <span class="mf">2.67000171275574</span>
+<span class="n">H</span>            <span class="mf">3.28629053073312</span>        <span class="mf">0.41143699628234</span>        <span class="mf">1.66551653182095</span>
+<span class="n">F</span>            <span class="mf">1.45890228919135</span>       <span class="o">-</span><span class="mf">1.16927127643663</span>        <span class="mf">3.17247594554108</span>
+<span class="n">Al</span>          <span class="o">-</span><span class="mf">0.34664906823946</span>        <span class="mf">0.71983755348018</span>       <span class="o">-</span><span class="mf">0.48978933340718</span>
+</pre></div>
+</div>
+</div>
+<p>For GFN2-xTB we will find the following printout for the initialization.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>...
+
+Starting initialization...
+--------------------------------------------------------------------------------
+OpenMP threads:              4
+Chosen random seed:          1344338798
+Mode:                        Static calculation
+Self consistent charges:     Yes
+SCC-tolerance:                 0.100000E-04
+Max. scc iterations:                    100
+Shell resolved Hubbard:      Yes
+Spin polarisation:           No
+Nr. of up electrons:            28.500000
+Nr. of down electrons:          28.500000
+Periodic boundaries:         No
+Electronic solver:           Relatively robust
+Mixer:                       Broyden mixer
+Mixing parameter:                  0.200000
+Maximal SCC-cycles:                     100
+Nr. of chrg. vec. in memory:            100
+<span class="hll">tblite library version:      0.2.1
+</span><span class="hll">-&gt; parametrization:          GFN2-xTB
+</span>-&gt; repulsion:                Yes
+-&gt; dispersion:               Yes
+-&gt; halogen bonding:          No
+-&gt; electrostatics:           Yes
+   -&gt; isotropic:             Yes
+   -&gt; anisotropic:           Yes
+   -&gt; third-order:           Yes
+<span class="hll">Electronic temperature:              0.950045E-03 H      0.258520E-01 eV
+</span>Initial charges:             Set automatically (system chrg:   0.000E+00)
+<span class="hll">Included shells:             B:  s, p
+</span><span class="hll">                             H:  s
+</span><span class="hll">                             O:  s, p
+</span><span class="hll">                             N:  s, p
+</span><span class="hll">                             F:  s, p
+</span><span class="hll">                             P:  s, p, d
+</span><span class="hll">                             C:  s, p
+</span><span class="hll">                            Al:  s, p, d
+</span>Extra options:
+                             Mulliken analysis
+                             Force calculation
+Force type                   original
+
+--------------------------------------------------------------------------------
+
+...
+</pre></div>
+</div>
+<p>Three notable points can be found in the output:</p>
+<ol class="arabic simple">
+<li><p>the version of the library used for evaluating xTB, as well as details on the parametrization of the xTB Hamiltonian and the included interactions</p></li>
+<li><p>the electronic temperature defaulting to 300K with the xTB Hamiltonian</p></li>
+<li><p>the availability of parameters for all the contained elements</p></li>
+</ol>
+<div class="info admonition">
+<p class="admonition-title">Exercise</p>
+<p>Perform a few trial calculation with the available xTB Hamiltonians.
+Try to check a few larger systems as well.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Taxol molecule<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">113</span>
+
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.26190362167063</span>   <span class="o">-</span><span class="mf">2.23274871515243</span>   <span class="o">-</span><span class="mf">0.34190733362876</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">0.95456098689486</span>   <span class="o">-</span><span class="mf">2.37695454268952</span>   <span class="o">-</span><span class="mf">0.57691720259526</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">0.37073732103448</span>   <span class="o">-</span><span class="mf">2.46433327240285</span>   <span class="o">-</span><span class="mf">1.96135470513670</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">0.41194130784284</span>   <span class="o">-</span><span class="mf">1.47597800037112</span>   <span class="o">-</span><span class="mf">2.43138059888576</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">0.94656125167399</span>   <span class="o">-</span><span class="mf">3.16068995746486</span>   <span class="o">-</span><span class="mf">2.57045179275739</span>
+<span class="n">H</span>           <span class="mf">0.66842644119588</span>   <span class="o">-</span><span class="mf">2.78880057328767</span>   <span class="o">-</span><span class="mf">1.90936385963964</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">0.00016207531929</span>   <span class="o">-</span><span class="mf">2.26877165199453</span>    <span class="mf">0.57330072167658</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">0.34829449712608</span>   <span class="o">-</span><span class="mf">0.97827553540687</span>    <span class="mf">1.33009459882379</span>
+<span class="n">H</span>           <span class="mf">0.01109943313599</span>   <span class="o">-</span><span class="mf">0.13551629263028</span>    <span class="mf">0.73731772561181</span>
+<span class="n">H</span>           <span class="mf">0.16838552404973</span>   <span class="o">-</span><span class="mf">0.97253756746775</span>    <span class="mf">2.28912996370670</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">1.85893224394126</span>   <span class="o">-</span><span class="mf">0.81026345247231</span>    <span class="mf">1.59480485119117</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">2.09770605966482</span>   <span class="o">-</span><span class="mf">0.84061168802268</span>    <span class="mf">2.99558018472920</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">2.03950726056567</span>    <span class="mf">0.07099522638439</span>    <span class="mf">3.36452409511852</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.68014178809399</span>   <span class="o">-</span><span class="mf">2.02945799558582</span>    <span class="mf">1.09658529964912</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">4.14339828717231</span>   <span class="o">-</span><span class="mf">1.71909922541134</span>    <span class="mf">1.40976642056161</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">4.53902595149693</span>   <span class="o">-</span><span class="mf">0.90072211338406</span>    <span class="mf">0.82675240558458</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">4.77431961418713</span>   <span class="o">-</span><span class="mf">2.58813415687901</span>    <span class="mf">1.26043363052764</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">4.19019507646917</span>   <span class="o">-</span><span class="mf">1.43792090898570</span>    <span class="mf">2.46226258158012</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.34683567528364</span>   <span class="o">-</span><span class="mf">3.28067596105746</span>    <span class="mf">1.95168067406062</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">1.67572538285061</span>   <span class="o">-</span><span class="mf">3.02192454833861</span>    <span class="mf">2.76826385272635</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">1.89917575532925</span>   <span class="o">-</span><span class="mf">4.06245114628146</span>    <span class="mf">1.34367048942152</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">3.26146448189256</span>   <span class="o">-</span><span class="mf">3.67917417958271</span>    <span class="mf">2.38598767343407</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.34639164857028</span>    <span class="mf">0.54339223254471</span>    <span class="mf">1.03033796600632</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">3.27100952991996</span>    <span class="mf">0.80886637194193</span>    <span class="mf">1.55042804108020</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">1.33052949111167</span>    <span class="mf">1.50426572011390</span>    <span class="mf">1.31721122471823</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">1.21509455620725</span>    <span class="mf">1.96613110661377</span>    <span class="mf">2.51874969847408</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">1.83012681874458</span>    <span class="mf">1.60912524580610</span>    <span class="mf">3.51477294717956</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">0.18987688088814</span>    <span class="mf">3.03605230210500</span>    <span class="mf">2.59442435919408</span>
+<span class="n">C</span>           <span class="mf">0.00832899175311</span>    <span class="mf">3.68661255088857</span>    <span class="mf">3.80877412661576</span>
+<span class="n">C</span>           <span class="mf">0.95178772078573</span>    <span class="mf">4.69095438229710</span>    <span class="mf">3.92052638513519</span>
+<span class="n">C</span>           <span class="mf">1.70851869740174</span>    <span class="mf">5.05200729469005</span>    <span class="mf">2.81560436023413</span>
+<span class="n">C</span>           <span class="mf">1.52118817478704</span>    <span class="mf">4.40770847828074</span>    <span class="mf">1.60213404758872</span>
+<span class="n">C</span>           <span class="mf">0.57697411413239</span>    <span class="mf">3.40243291944411</span>    <span class="mf">1.49201296630779</span>
+<span class="n">H</span>           <span class="mf">0.41662609581964</span>    <span class="mf">2.88831438660841</span>    <span class="mf">0.54950063706763</span>
+<span class="n">H</span>           <span class="mf">2.11642233730867</span>    <span class="mf">4.69179621902942</span>    <span class="mf">0.74084766415095</span>
+<span class="n">H</span>           <span class="mf">2.44874414910769</span>    <span class="mf">5.83992148313697</span>    <span class="mf">2.90165670972236</span>
+<span class="n">H</span>           <span class="mf">1.10175674438479</span>    <span class="mf">5.19672707064917</span>    <span class="mf">4.86853767337483</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">0.59587295693050</span>    <span class="mf">3.38682557490628</span>    <span class="mf">4.66099948254686</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.55222499871792</span>    <span class="mf">0.69918633986789</span>   <span class="o">-</span><span class="mf">0.50995521967761</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">1.86309477217822</span>    <span class="mf">0.01093512761788</span>   <span class="o">-</span><span class="mf">0.99373502172831</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.08019374633758</span>    <span class="mf">2.10823011355873</span>   <span class="o">-</span><span class="mf">0.90117488634351</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.55661378655687</span>    <span class="mf">3.26627514291862</span>   <span class="o">-</span><span class="mf">0.02206071105077</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">3.19251371639452</span>    <span class="mf">3.01066256127990</span>    <span class="mf">0.82354990805305</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">1.74875954827032</span>    <span class="mf">3.92714542906296</span>    <span class="mf">0.29821804958285</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">3.32361972050627</span>    <span class="mf">3.84411901817690</span>   <span class="o">-</span><span class="mf">1.10322352777608</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">2.75910686767183</span>    <span class="mf">2.89339297511699</span>   <span class="o">-</span><span class="mf">2.03963336207423</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">3.83260478912206</span>    <span class="mf">2.25828551705607</span>   <span class="o">-</span><span class="mf">2.88881858111899</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">3.62835989651982</span>    <span class="mf">2.39632492680399</span>   <span class="o">-</span><span class="mf">3.95081655619850</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">4.78201150041827</span>    <span class="mf">2.74811280449107</span>   <span class="o">-</span><span class="mf">2.66267413636231</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">3.98725059124100</span>    <span class="mf">0.77149125041999</span>   <span class="o">-</span><span class="mf">2.61295786251850</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">5.22509981286263</span>    <span class="mf">0.42167923619522</span>   <span class="o">-</span><span class="mf">3.19636532504308</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">5.60338777092674</span>   <span class="o">-</span><span class="mf">0.33725080568793</span>   <span class="o">-</span><span class="mf">2.71029884853608</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">3.15848920485993</span>    <span class="mf">0.23110800719778</span>   <span class="o">-</span><span class="mf">3.08988880419871</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">3.94874381609669</span>    <span class="mf">0.40341749738402</span>   <span class="o">-</span><span class="mf">1.09781556022962</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">4.31403062698241</span>   <span class="o">-</span><span class="mf">1.06845821849688</span>   <span class="o">-</span><span class="mf">1.23559306268395</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">5.46730824921587</span>   <span class="o">-</span><span class="mf">1.37539731259632</span>   <span class="o">-</span><span class="mf">1.42291224832408</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">3.16940688196012</span>   <span class="o">-</span><span class="mf">2.00025422378842</span>   <span class="o">-</span><span class="mf">1.52128596073916</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">2.56008628127861</span>   <span class="o">-</span><span class="mf">1.42302325961245</span>   <span class="o">-</span><span class="mf">2.23078661873523</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">3.46688123391754</span>   <span class="o">-</span><span class="mf">3.12710150334685</span>   <span class="o">-</span><span class="mf">2.32419591594549</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">4.26703545212573</span>   <span class="o">-</span><span class="mf">4.09254410692390</span>   <span class="o">-</span><span class="mf">2.04267258972991</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">4.43065439408332</span>   <span class="o">-</span><span class="mf">4.97092059095515</span>   <span class="o">-</span><span class="mf">2.87958001566486</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">4.98071885619310</span>   <span class="o">-</span><span class="mf">4.18722479150635</span>   <span class="o">-</span><span class="mf">0.71113528278304</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">5.58114498737944</span>   <span class="o">-</span><span class="mf">5.09138828914589</span>   <span class="o">-</span><span class="mf">0.69988734973086</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">5.62533266122613</span>   <span class="o">-</span><span class="mf">3.32415413277582</span>   <span class="o">-</span><span class="mf">0.58051013330245</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">4.25691939668289</span>   <span class="o">-</span><span class="mf">4.22982538680672</span>    <span class="mf">0.09481008712761</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">5.07518604081354</span>    <span class="mf">1.16877387027910</span>   <span class="o">-</span><span class="mf">0.40455960793867</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">5.06235208120400</span>    <span class="mf">0.99821995654290</span>    <span class="mf">0.67005764986687</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">4.98900416807055</span>    <span class="mf">2.23898058193758</span>   <span class="o">-</span><span class="mf">0.58314514997154</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">6.02531255586048</span>    <span class="mf">0.81099135338798</span>   <span class="o">-</span><span class="mf">0.80297212686910</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">2.00590752974238</span>    <span class="mf">3.38307870871891</span>   <span class="o">-</span><span class="mf">2.66035432379169</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">0.67428930774075</span>    <span class="mf">2.17371266689630</span>   <span class="o">-</span><span class="mf">1.05009019448311</span>
+<span class="n">C</span>          <span class="o">-</span><span class="mf">0.15210346921377</span>    <span class="mf">1.44852486559195</span>   <span class="o">-</span><span class="mf">1.98368047843702</span>
+<span class="n">O</span>          <span class="o">-</span><span class="mf">0.72846762068478</span>    <span class="mf">0.66557311000637</span>   <span class="o">-</span><span class="mf">2.71893747900941</span>
+<span class="n">C</span>           <span class="mf">1.33754218473599</span>    <span class="mf">1.69785449183155</span>   <span class="o">-</span><span class="mf">2.08076702178496</span>
+<span class="n">H</span>           <span class="mf">1.75105754926356</span>    <span class="mf">1.08172484345258</span>   <span class="o">-</span><span class="mf">2.87504989398818</span>
+<span class="n">H</span>           <span class="mf">1.81746747191693</span>    <span class="mf">1.43711436732152</span>   <span class="o">-</span><span class="mf">1.14097557303593</span>
+<span class="n">H</span>           <span class="mf">1.52896786986216</span>    <span class="mf">2.74708554797121</span>   <span class="o">-</span><span class="mf">2.28759822779882</span>
+<span class="n">H</span>          <span class="o">-</span><span class="mf">0.12217156539345</span>   <span class="o">-</span><span class="mf">3.10952089692694</span>    <span class="mf">1.25599950211545</span>
+<span class="n">O</span>           <span class="mf">1.33385430727247</span>   <span class="o">-</span><span class="mf">2.25262620282775</span>    <span class="mf">0.10259397091073</span>
+<span class="n">C</span>           <span class="mf">2.18583559863485</span>   <span class="o">-</span><span class="mf">2.69480834809498</span>    <span class="mf">0.96519647740345</span>
+<span class="n">O</span>           <span class="mf">1.97506781517084</span>   <span class="o">-</span><span class="mf">3.03852936023556</span>    <span class="mf">2.11881325370133</span>
+<span class="n">C</span>           <span class="mf">3.60531421670553</span>   <span class="o">-</span><span class="mf">2.77012815376632</span>    <span class="mf">0.44547071961222</span>
+<span class="n">O</span>           <span class="mf">4.40619994338439</span>   <span class="o">-</span><span class="mf">3.32196935889856</span>    <span class="mf">1.47019593752540</span>
+<span class="n">H</span>           <span class="mf">3.80441494412930</span>   <span class="o">-</span><span class="mf">3.45808597263640</span>    <span class="mf">2.22626881684654</span>
+<span class="n">H</span>           <span class="mf">3.66270434359231</span>   <span class="o">-</span><span class="mf">3.39955941294499</span>   <span class="o">-</span><span class="mf">0.44768416007918</span>
+<span class="n">C</span>           <span class="mf">4.12599705372900</span>   <span class="o">-</span><span class="mf">1.36164184366329</span>    <span class="mf">0.09280168923320</span>
+<span class="n">N</span>           <span class="mf">3.32960241513642</span>   <span class="o">-</span><span class="mf">0.86728091800343</span>   <span class="o">-</span><span class="mf">0.99832944071139</span>
+<span class="n">C</span>           <span class="mf">3.78057443409672</span>   <span class="o">-</span><span class="mf">0.54116647103130</span>   <span class="o">-</span><span class="mf">2.23059974248466</span>
+<span class="n">O</span>           <span class="mf">3.04215736615235</span>   <span class="o">-</span><span class="mf">0.49739181490405</span>   <span class="o">-</span><span class="mf">3.19842731717708</span>
+<span class="n">C</span>           <span class="mf">5.21422892212231</span>   <span class="o">-</span><span class="mf">0.18253147399184</span>   <span class="o">-</span><span class="mf">2.35444289723476</span>
+<span class="n">C</span>           <span class="mf">5.87582516895670</span>    <span class="mf">0.61411387446773</span>   <span class="o">-</span><span class="mf">1.42595677001613</span>
+<span class="n">C</span>           <span class="mf">7.19735276149193</span>    <span class="mf">0.97418571930306</span>   <span class="o">-</span><span class="mf">1.62854358196679</span>
+<span class="n">C</span>           <span class="mf">7.86924363190920</span>    <span class="mf">0.54369211104811</span>   <span class="o">-</span><span class="mf">2.76134630886935</span>
+<span class="n">C</span>           <span class="mf">7.21198661152069</span>   <span class="o">-</span><span class="mf">0.23268009942841</span>   <span class="o">-</span><span class="mf">3.70371179743003</span>
+<span class="n">C</span>           <span class="mf">5.88898892602259</span>   <span class="o">-</span><span class="mf">0.58240577531325</span>   <span class="o">-</span><span class="mf">3.50429602695658</span>
+<span class="n">H</span>           <span class="mf">5.35815759360643</span>   <span class="o">-</span><span class="mf">1.17972272118238</span>   <span class="o">-</span><span class="mf">4.23997551843760</span>
+<span class="n">H</span>           <span class="mf">7.73339483774093</span>   <span class="o">-</span><span class="mf">0.55828989847416</span>   <span class="o">-</span><span class="mf">4.59752172511528</span>
+<span class="n">H</span>           <span class="mf">8.90589087887168</span>    <span class="mf">0.82209042978918</span>   <span class="o">-</span><span class="mf">2.91596886003763</span>
+<span class="n">H</span>           <span class="mf">7.70659950948429</span>    <span class="mf">1.59609385235223</span>   <span class="o">-</span><span class="mf">0.90001452504522</span>
+<span class="n">H</span>           <span class="mf">5.34662073139270</span>    <span class="mf">0.96722785471406</span>   <span class="o">-</span><span class="mf">0.54804547099080</span>
+<span class="n">H</span>           <span class="mf">2.35372603597705</span>   <span class="o">-</span><span class="mf">1.13581656250778</span>   <span class="o">-</span><span class="mf">0.92805997792707</span>
+<span class="n">C</span>           <span class="mf">4.05164267592348</span>   <span class="o">-</span><span class="mf">0.49223807721407</span>    <span class="mf">1.31558083515360</span>
+<span class="n">C</span>           <span class="mf">3.00893439484731</span>    <span class="mf">0.39835201685449</span>    <span class="mf">1.52213310312531</span>
+<span class="n">C</span>           <span class="mf">2.93219960150823</span>    <span class="mf">1.13038964927044</span>    <span class="mf">2.69505538510186</span>
+<span class="n">C</span>           <span class="mf">3.89950617571995</span>    <span class="mf">0.97631191063620</span>    <span class="mf">3.67471628636534</span>
+<span class="n">C</span>           <span class="mf">4.94268142758468</span>    <span class="mf">0.08492562945832</span>    <span class="mf">3.47898204736814</span>
+<span class="n">C</span>           <span class="mf">5.01391626805056</span>   <span class="o">-</span><span class="mf">0.64590838002696</span>    <span class="mf">2.30553542679038</span>
+<span class="n">H</span>           <span class="mf">5.81600993424474</span>   <span class="o">-</span><span class="mf">1.35931646572247</span>    <span class="mf">2.14772196574119</span>
+<span class="n">H</span>           <span class="mf">5.70046843397824</span>   <span class="o">-</span><span class="mf">0.04140120095247</span>    <span class="mf">4.24465748987104</span>
+<span class="n">H</span>           <span class="mf">3.83916582620011</span>    <span class="mf">1.54999966309067</span>    <span class="mf">4.59276451640817</span>
+<span class="n">H</span>           <span class="mf">2.11144231507796</span>    <span class="mf">1.82037338403752</span>    <span class="mf">2.84748797399134</span>
+<span class="n">H</span>           <span class="mf">2.25083747473477</span>    <span class="mf">0.52037131490303</span>    <span class="mf">0.75600605502183</span>
+<span class="n">H</span>           <span class="mf">5.16226233179803</span>   <span class="o">-</span><span class="mf">1.44693032750892</span>   <span class="o">-</span><span class="mf">0.23098830761639</span>
+
+</pre></div>
+</div>
+</div>
+</details><p>Do you notice a difference in computational cost of the xTB methods?
+Is this difference expected and how can it be explained?</p>
+</div>
+</section>
+<section id="using-parameter-files">
+<h2>Using parameter files<a class="headerlink" href="#using-parameter-files" title="Permalink to this headline">#</a></h2>
+<p>For the silicon element a reparametrization of the GFN1-xTB Hamiltonian was proposed, which is not directly available as <code class="docutils literal notranslate"><span class="pre">Method</span></code> keyword.
+Instead a <code class="docutils literal notranslate"><span class="pre">ParameterFile</span></code> can be provided.
+To obtain the parameter file for the GFN1(Si)-xTB method,<a class="footnote-reference brackets" href="#footcite-komissarov2021" id="id5">5</a> we start by creating the GFN1-xTB parameter file from the internal parametrization storage</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>❯ tblite param --method gfn1 --output gfn1-si-xtb.toml
+GFN1-xTB
+S. Grimme, C. Bannwarth, P. Shushkov, J. Chem. Theory Comput., 2017, 13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118
+[Info] Parameter file written to &#39;gfn1-si-xtb.toml&#39;
+</pre></div>
+</div>
+<p>Checking the publication for the silicon reparametrization, we find the following block should replace the original silicon parameters</p>
+<div class="literal-block-wrapper docutils container" id="id11">
+<div class="code-block-caption"><span class="caption-text">GFN1(Si)-xTB silicon parameters</span><a class="headerlink" href="#id11" title="Permalink to this code">#</a></div>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[element.Si]</span><span class="w"></span>
+<span class="n">shells</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s">&quot;3s&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3p&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3d&quot;</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">levels</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">-20</span><span class="mf">.800315425903165</span><span class="p">,</span><span class="w"> </span><span class="mi">-3</span><span class="mf">.5264076861641520</span><span class="p">,</span><span class="w"> </span><span class="mi">-3</span><span class="mf">.3208643706317353</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">slater</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">2.3371570152493040</span><span class="p">,</span><span class="w"> </span><span class="mf">1.5763458252396125</span><span class="p">,</span><span class="w"> </span><span class="mf">2.4738420884260743</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">ngauss</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">refocc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">2.0000000000000000E+00</span><span class="p">,</span><span class="w"> </span><span class="mf">2.0000000000000000E+00</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0000000000000000E+00</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">shpoly</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">1.4825308771746826e-1</span><span class="p">,</span><span class="w"> </span><span class="mi">-8</span><span class="mf">.62884770910867e-2</span><span class="p">,</span><span class="w"> </span><span class="mf">3.657238734895316e-1</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">kcn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">0.12480189255541899</span><span class="p">,</span><span class="w"> </span><span class="mi">-0</span><span class="mf">.010579223058492456</span><span class="p">,</span><span class="w"> </span><span class="mi">-0</span><span class="mf">.016604321853158677</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">gam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.251140760209364</span><span class="w"></span>
+<span class="n">lgam</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mf">0.502801760750610</span><span class="p">,</span><span class="w"> </span><span class="mf">0.395446383965421</span><span class="p">,</span><span class="w"> </span><span class="mf">1.607202745178966</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="n">gam3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.1249948730457175</span><span class="w"></span>
+<span class="n">zeff</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">21.35692801920323</span><span class="w"></span>
+<span class="n">arep</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0359397134915551</span><span class="w"></span>
+<span class="n">xbond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0000000000000000E+00</span><span class="w"></span>
+<span class="n">en</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.089192666371941</span><span class="w"></span>
+<span class="n">dkernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0000000000000000E+00</span><span class="w"></span>
+<span class="n">qkernel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0000000000000000E+00</span><span class="w"></span>
+<span class="n">mprad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0000000000000000E+00</span><span class="w"></span>
+<span class="n">mpvcn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0000000000000000E+00</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<p>Furthermore, a new element-pair scaling is added for silicon–oxygen pairs under <code class="docutils literal notranslate"><span class="pre">hamiltonian.xtb.kpair</span></code>, replacing the default scaling of 1.0 by</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="c1"># ...</span><span class="w"></span>
+<span class="k">[hamiltonian.xtb.kpair]</span><span class="w"></span>
+<span class="c1"># ...</span><span class="w"></span>
+<span class="n">Si-O</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.9689382911964309</span><span class="w"></span>
+<span class="c1"># ...</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Finally, it would be diligent to properly update the <code class="docutils literal notranslate"><span class="pre">meta</span></code> entry to correctly identify the parametrization</p>
+<div class="highlight-toml notranslate"><div class="highlight"><pre><span></span><span class="k">[meta]</span><span class="w"></span>
+<span class="n">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;GFN1(Si)-xTB&quot;</span><span class="w"></span>
+<span class="n">reference</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;&quot;&quot;S. Grimme, C. Bannwarth, P. Shushkov, J. Chem. Theory Comput., 2017, 13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118</span>
+<span class="s">L. Komissarov, Toon Verstraelen, J. Chem. Inf. Mod. ASAP. DOI: 10.1021/acs.jcim.1c01170&quot;&quot;&quot;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The modified parameter file can now be used in DFTB+ with</p>
+<div class="literal-block-wrapper docutils container" id="id12">
+<div class="code-block-caption"><span class="caption-text">dftb_in.hsd</span><a class="headerlink" href="#id12" title="Permalink to this code">#</a></div>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="nv">Geometry</span> <span class="o">=</span> xyzFormat <span class="o">{</span>
+<span class="o">&lt;&lt;&lt;</span> <span class="s2">&quot;struc.xyz&quot;</span>
+<span class="o">}</span>
+
+<span class="nv">Hamiltonian</span> <span class="o">=</span> xTB <span class="o">{</span>
+<span class="hll">  <span class="nv">ParameterFile</span> <span class="o">=</span> <span class="s2">&quot;gfn1-si-xtb.toml&quot;</span>
+</span><span class="o">}</span>
+
+<span class="nv">Options</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">WriteDetailedOut</span> <span class="o">=</span> No <span class="o">}</span>
+Analysis <span class="o">{</span> <span class="nv">CalculateForces</span> <span class="o">=</span> Yes <span class="o">}</span>
+<span class="nv">ParserOptions</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">ParserVersion</span> <span class="o">=</span> <span class="m">10</span> <span class="o">}</span>
+<span class="nv">Parallel</span> <span class="o">=</span> <span class="o">{</span> <span class="nv">UseOmpThreads</span> <span class="o">=</span> Yes <span class="o">}</span>
+</pre></div>
+</div>
+</div>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
+Difference between GFN1-xTB and GFN1(Si)-xTB parameter file<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="highlight-diff notranslate"><div class="highlight"><pre><span></span><span class="gd">--- gfn1-xtb.toml</span><span class="w"></span>
+<span class="gi">+++ gfn1-si-xtb.toml</span><span class="w"></span>
+<span class="gu">@@ -1,6 +1,7 @@</span><span class="w"></span>
+<span class="w"> </span>[meta]<span class="w"></span>
+<span class="gd">-name = &quot;GFN1-xTB&quot;</span><span class="w"></span>
+<span class="gd">-reference = &quot;S. Grimme, C. Bannwarth, P. Shushkov, J. Chem. Theory Comput., 2017, 13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118&quot;</span><span class="w"></span>
+<span class="gi">+name = &quot;GFN1(Si)-xTB&quot;</span><span class="w"></span>
+<span class="gi">+reference = &quot;&quot;&quot;S. Grimme, C. Bannwarth, P. Shushkov, J. Chem. Theory Comput., 2017, 13, 1989-2009. DOI: 10.1021/acs.jctc.7b00118</span><span class="w"></span>
+<span class="gi">+L. Komissarov, Toon Verstraelen, J. Chem. Inf. Mod. ASAP. DOI: 10.1021/acs.jcim.1c01170&quot;&quot;&quot;</span><span class="w"></span>
+<span class="w"> </span>version = 1<span class="w"></span>
+<span class="w"> </span>format = 1<span class="w"></span>
+<span class="w"> </span>[hamiltonian]<span class="w"></span>
+<span class="gu">@@ -19,6 +20,7 @@</span><span class="w"></span>
+<span class="w"> </span>B-H = 9.4999999999999996E-01<span class="w"></span>
+<span class="w"> </span>N-H = 1.0400000000000000E+00<span class="w"></span>
+<span class="w"> </span>Si-N = 1.0100000000000000E+00<span class="w"></span>
+<span class="gi">+Si-O = 0.9689382911964309</span><span class="w"></span>
+<span class="w"> </span>P-B = 9.6999999999999997E-01<span class="w"></span>
+<span class="w"> </span>Sc-Sc = 1.1000000000000001E+00<span class="w"></span>
+<span class="w"> </span>Ti-Sc = 1.1000000000000001E+00<span class="w"></span>
+<span class="gu">@@ -1154,19 +1156,19 @@</span><span class="w"></span>
+<span class="w"> </span>mpvcn = 0.0000000000000000E+00<span class="w"></span>
+<span class="w"> </span>[element.Si]<span class="w"></span>
+<span class="w"> </span>shells = [ &quot;3s&quot;, &quot;3p&quot;, &quot;3d&quot; ]<span class="w"></span>
+<span class="gd">-levels = [ -1.4506128000000000E+01, -7.5573370000000013E+00, -2.5081129999999998E+00 ]</span><span class="w"></span>
+<span class="gd">-slater = [ 1.5219600000000000E+00, 1.6091380000000000E+00, 1.1689710000000000E+00 ]</span><span class="w"></span>
+<span class="gi">+levels = [ -20.800315425903165, -3.5264076861641520, -3.3208643706317353 ]</span><span class="w"></span>
+<span class="gi">+slater = [ 2.3371570152493040, 1.5763458252396125, 2.4738420884260743 ]</span><span class="w"></span>
+<span class="w"> </span>ngauss = [ 6, 6, 4 ]<span class="w"></span>
+<span class="w"> </span>refocc = [ 2.0000000000000000E+00, 2.0000000000000000E+00, 0.0000000000000000E+00 ]<span class="w"></span>
+<span class="gd">-shpoly = [ -1.4201582000000001E-01, -3.8933430000000005E-02, 2.5499221000000000E-01 ]</span><span class="w"></span>
+<span class="gd">-kcn = [ 8.7036768000000000E-02, -2.2672010999999999E-02, -1.2540565000000000E-02 ]</span><span class="w"></span>
+<span class="gd">-gam = 4.3833100000000003E-01</span><span class="w"></span>
+<span class="gd">-lgam = [ 1.0000000000000000E+00, 4.0741660000000002E-01, 1.0000000000000000E+00 ]</span><span class="w"></span>
+<span class="gd">-gam3 = 1.5000000000000002E-01</span><span class="w"></span>
+<span class="gd">-zeff = 1.6898358999999999E+01</span><span class="w"></span>
+<span class="gd">-arep = 9.4816500000000004E-01</span><span class="w"></span>
+<span class="gi">+shpoly = [ 1.4825308771746826e-1, -8.62884770910867e-2, 3.657238734895316e-1 ]</span><span class="w"></span>
+<span class="gi">+kcn = [ 0.12480189255541899, -0.010579223058492456, -0.016604321853158677 ]</span><span class="w"></span>
+<span class="gi">+gam = 2.251140760209364</span><span class="w"></span>
+<span class="gi">+lgam = [ 0.502801760750610, 0.395446383965421, 1.607202745178966 ]</span><span class="w"></span>
+<span class="gi">+gam3 = 1.1249948730457175</span><span class="w"></span>
+<span class="gi">+zeff = 21.35692801920323</span><span class="w"></span>
+<span class="gi">+arep = 1.0359397134915551</span><span class="w"></span>
+<span class="w"> </span>xbond = 0.0000000000000000E+00<span class="w"></span>
+<span class="gd">-en = 1.8999999999999999E+00</span><span class="w"></span>
+<span class="gi">+en = 2.089192666371941</span><span class="w"></span>
+<span class="w"> </span>dkernel = 0.0000000000000000E+00<span class="w"></span>
+<span class="w"> </span>qkernel = 0.0000000000000000E+00<span class="w"></span>
+<span class="w"> </span>mprad = 0.0000000000000000E+00<span class="w"></span>
+</pre></div>
+</div>
+</div>
+</details><div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The specification of the parameter file format can be found in the <a class="reference external" href="https://tblite.readthedocs.io">tblite documentation</a>.</p>
+</div>
+</section>
+<section id="summary">
+<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this headline">#</a></h2>
+<div class="important admonition">
+<p class="admonition-title">You learned…</p>
+<ul class="simple">
+<li><p>to setup a calculation with the extended tight binding Hamiltonian</p></li>
+<li><p>perform single point evaluations on various element combinations with xTB</p></li>
+<li><p>export parameter files and manipulate the parametrization data</p></li>
+</ul>
+</div>
+</section>
+<section id="literature">
+<h2>Literature<a class="headerlink" href="#literature" title="Permalink to this headline">#</a></h2>
+<div class="docutils container" id="id6">
+<dl class="footnote brackets">
+<dt class="label" id="footcite-bannwarth2020"><span class="brackets"><a class="fn-backref" href="#id1">1</a></span></dt>
+<dd><p>Christoph Bannwarth, Eike Caldeweyher, Sebastian Ehlert, Andreas Hansen, Philipp Pracht, Jakob Seibert, Sebastian Spicher, and Stefan Grimme. Extended tight‐binding quantum chemistry methods. <em>WIREs Comput. Mol. Sci.</em>, 11:e1493, 2021. <a class="reference external" href="https://doi.org/10.1002/wcms.1493">doi:10.1002/wcms.1493</a>.</p>
+</dd>
+<dt class="label" id="footcite-grimme2017-1"><span class="brackets"><a class="fn-backref" href="#id2">2</a></span></dt>
+<dd><p>Stefan Grimme, Christoph Bannwarth, and Philip Shushkov. A robust and accurate tight-binding quantum chemical method for structures, vibrational frequencies, and noncovalent interactions of large molecular systems parametrized for all spd-block elements (z = 1–86). <em>J. Chem. Theory Comput.</em>, 13(5):1989–2009, 2017. <a class="reference external" href="https://doi.org/10.1021/acs.jctc.7b00118">doi:10.1021/acs.jctc.7b00118</a>.</p>
+</dd>
+<dt class="label" id="footcite-bannwarth2019"><span class="brackets"><a class="fn-backref" href="#id3">3</a></span></dt>
+<dd><p>Christoph Bannwarth, Sebastian Ehlert, and Stefan Grimme. GFN2-xTB—an accurate and broadly parametrized self-consistent tight-binding quantum chemical method with multipole electrostatics and density-dependent dispersion contributions. <em>J. Chem. Theory Comput.</em>, 15(3):1652–1671, 2019. <a class="reference external" href="https://doi.org/10.1021/acs.jctc.8b01176">doi:10.1021/acs.jctc.8b01176</a>.</p>
+</dd>
+<dt class="label" id="footcite-asgeirsson2017"><span class="brackets"><a class="fn-backref" href="#id4">4</a></span></dt>
+<dd><p>Vilhjálmur Ásgeirsson, Christoph A Bauer, and Stefan Grimme. Quantum chemical calculation of electron ionization mass spectra for general organic and inorganic molecules. <em>Chem. Sci.</em>, 8(7):4879–4895, 2017. <a class="reference external" href="https://doi.org/10.1039/c7sc00601b">doi:10.1039/c7sc00601b</a>.</p>
+</dd>
+<dt class="label" id="footcite-komissarov2021"><span class="brackets"><a class="fn-backref" href="#id5">5</a></span></dt>
+<dd><p>Leonid Komissarov and Toon Verstraelen. Improving the silicon interactions of GFN-xTB. <em>J. Chem. Inf. Mod.</em>, 61(12):5931–5937, 2021. <a class="reference external" href="https://doi.org/10.1021/acs.jcim.1c01170">doi:10.1021/acs.jcim.1c01170</a>.</p>
+</dd>
+</dl>
+</div>
+</section>
+</section>
+
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='left-prev' id="prev-link" href="index.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Tutorial</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="conformers.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Conformational ensembles</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Sebastian Ehlert<br/>
+  
+      &copy; Copyright 2022 Sebastian Ehlert.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
