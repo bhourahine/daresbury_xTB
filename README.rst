@@ -1,7 +1,8 @@
 DFTB+ school in Daresbury
 =========================
 
-This repository contains the material for the session on extended tight-binding for the `DFTB+ school in Daresbury <https://www.cecam.org/workshop-details/1163>`__.
+This repository contains the material for the session on extended tight-binding for the `DFTB+ school in Daresbury <https://www.cecam.org/workshop-details/1163>`__, made available in the public domain (Unlicense).
+It is highly appreciated if you credit this work if you reuse it for whatever purpose, but not required.
 
 
 Building the pages
