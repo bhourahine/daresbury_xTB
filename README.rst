@@ -13,7 +13,7 @@ Create a new environment using
 
 .. code::
 
-   mamba create -n sphinx -f environment.yml
+   mamba env create -n sphinx -f environment.yml
    mamba activate sphinx
 
 Now you can compile the pages with
